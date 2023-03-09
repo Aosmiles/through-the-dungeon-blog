@@ -5,9 +5,9 @@ import sanity from "astro-sanity";
 // https://astro.build/config
 export default defineConfig({
   integrations: [sanity({
-    projectId: 'psk67h6g',
+    projectId: 'v15pu7z1',
     dataset: "production",
-    apiVersion: "2023-03-08",
+    apiVersion: "2023-03-09",
     useCdn: false
   })]
 });

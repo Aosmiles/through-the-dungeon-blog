@@ -1,26 +1,16 @@
-import {defineConfig, isDev} from 'sanity'
-import {visionTool} from '@sanity/vision'
+import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
+import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
-import {getStartedPlugin} from './plugins/sanity-plugin-tutorial'
-import {cloudinaryAssetSourcePlugin, cloudinarySchemaPlugin} from 'sanity-plugin-cloudinary'
-
-const devOnlyPlugins = [getStartedPlugin()]
 
 export default defineConfig({
-  name: 'through-the-dungeon-blog',
-  title: 'Through The Dungeon',
+  name: 'default',
+  title: 'through the dungeon',
 
-  projectId: 'psk67h6g',
+  projectId: 'v15pu7z1',
   dataset: 'production',
 
-  plugins: [
-    deskTool(),
-    visionTool(),
-    cloudinaryAssetSourcePlugin(),
-    cloudinarySchemaPlugin(),
-    ...(isDev ? devOnlyPlugins : []),
-  ],
+  plugins: [deskTool(), visionTool()],
 
   schema: {
     types: schemaTypes,
