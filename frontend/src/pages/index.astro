@@ -1,18 +1,28 @@
 ---
-import { getSiteSettings } from "../lib/sanity";
+import BaseHead from "../components/baseHead.astro";
+import { getAllPosts, getSiteSettings } from "../lib/sanity";
+import { urlForImage } from "../lib/sanityImageUrlBuilder";
 const settings = await getSiteSettings();
+const allPosts = await getAllPosts();
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
+  <BaseHead />
   <body>
     <h1>{settings.title}</h1>
     <p>{settings.description}</p>
+    <ul>
+      {
+        allPosts.map((post) => (
+          <li>
+            <h2>{post.title}</h2>
+            <img
+              src={urlForImage(post.images[0]).width(300).url()}
+              alt={post.images[0].altText}
+            />
+          </li>
+        ))
+      }
+    </ul>
   </body>
 </html>

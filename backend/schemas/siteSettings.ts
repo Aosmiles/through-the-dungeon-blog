@@ -16,6 +16,11 @@ export default defineType({
       type: 'text',
     }),
     defineField({
+      name: 'url',
+      title: 'Site URL',
+      type: 'url',
+    }),
+    defineField({
       name: 'ogImage',
       title: 'Open Graph Image',
       type: 'image',

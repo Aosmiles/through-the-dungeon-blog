@@ -23,7 +23,7 @@ export default defineType({
       name: 'images',
       title: 'Images',
       type: 'array',
-      of: [{type: 'image', options: {hotspot: true}}],
+      of: [{type: 'image'}, {type: 'imagePlus'}],
     }),
     defineField({
       name: 'features',
