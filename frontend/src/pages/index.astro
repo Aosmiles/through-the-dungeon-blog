@@ -7,7 +7,12 @@ const allPosts = await getAllPosts();
 ---
 
 <MainLayout>
-  <h1>{settings.title}</h1>
+  <h1
+    class="mt-4 text-6xl text-riso-red font-bold font-display uppercase text-center"
+  >
+    {settings.title}
+  </h1>
+  <div class="mt-6 border-b-2 border-riso-yellow"></div>
   <p>{settings.description}</p>
   <ul>
     {
@@ -15,7 +20,7 @@ const allPosts = await getAllPosts();
         <li>
           <h2>{post.title}</h2>
           <img
-            class="border-l-8 border-riso-blue"
+            class="border-l-16 border-riso-blue"
             loading="lazy"
             src={urlForImage(post.images[0]).width(300).url()}
             alt={post.images[0].altText}
