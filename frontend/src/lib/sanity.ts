@@ -1,7 +1,7 @@
 import { useSanityClient, groq } from "astro-sanity";
 
 export async function getAllPosts() {
-  const query = groq`*[_type == "post"]`;
+  const query = groq`*[_type == "post"] | order(_createdAt desc)`;
   const allPosts = await useSanityClient().fetch(query);
   return allPosts;
 }

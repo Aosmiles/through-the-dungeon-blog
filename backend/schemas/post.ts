@@ -26,6 +26,22 @@ export default defineType({
       of: [{type: 'image'}, {type: 'imagePlus'}],
     }),
     defineField({
+      name: 'color',
+      title: 'Color',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Red', value: 'red'},
+          {title: 'Blue', value: 'blue'},
+          {title: 'Green', value: 'green'},
+          {title: 'Purple', value: 'purple'},
+          {title: 'Teal', value: 'teal'},
+          {title: 'Yellow', value: 'yellow'},
+          {title: 'Black', value: 'black'},
+        ],
+      },
+    }),
+    defineField({
       name: 'features',
       title: 'Features',
       type: 'array',
