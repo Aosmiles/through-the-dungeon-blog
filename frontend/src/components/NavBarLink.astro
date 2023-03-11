@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+  text: string;
+}
+
+const { href, text } = Astro.props;
+const currentPage = Astro.url.pathname === href ? "current-page" : "";
+---
+
+<a class={currentPage} href={href}>{text}</a>
+
+<style>
+  a {
+    text-decoration: none;
+  }
+
+  .current-page {
+    text-decoration: underline;
+  }
+</style>
