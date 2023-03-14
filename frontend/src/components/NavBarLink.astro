@@ -5,10 +5,10 @@ interface Props {
 }
 
 const { href, text } = Astro.props;
-const currentPage = Astro.url.pathname === href ? "current-page" : "";
+const currentPage = Astro.url.pathname === href;
 ---
 
-<a class={currentPage} href={href}>{text}</a>
+<a class:list={[{ "current-page": currentPage }]} href={href}>{text}</a>
 
 <style>
   a {

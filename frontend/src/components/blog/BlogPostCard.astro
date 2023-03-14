@@ -1,0 +1,17 @@
+---
+import { urlForImage } from "../../lib/sanityImageUrlBuilder";
+import risoColorClasses from "../../utility/risoColorClasses.js";
+
+const { post } = Astro.props;
+const imageUrl = urlForImage(post.images[0]).width(300).auto("format").url();
+const date = post.publishDate.slice(0, 10);
+const color = risoColorClasses[post.color];
+---
+
+<div class="container center mx-auto px-10 sm">
+  <h2 class:list={["text-3xl font-semibold uppercase", color.title]}>
+    {post.title}
+  </h2>
+  <img src={imageUrl} alt="" />
+  <p class:list={["text-lg", color.text]}>{post.description}</p>
+</div>
