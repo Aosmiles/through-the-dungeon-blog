@@ -1,0 +1,24 @@
+---
+import { useSanityClient } from "astro-sanity";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { urlForImage } from "../../lib/sanityImageUrlBuilder";
+
+export async function getStaticPaths() {
+  const posts = await useSanityClient().fetch(`*[_type == "post"]`);
+
+  return posts.map(({ slug, title, images }) => {
+    return {
+      params: { slug: slug.current },
+      props: { title, images },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { title, images } = Astro.props;
+---
+
+<MainLayout>
+  <h1>{title}</h1>
+  <img src={urlForImage(images[0]).url()} alt="" />
+</MainLayout>

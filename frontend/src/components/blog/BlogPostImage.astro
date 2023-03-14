@@ -1,0 +1,13 @@
+---
+import Image from "astro/components/Image.astro";
+
+const { imageUrl, width, height, color, alt = "" } = Astro.props;
+---
+
+<Image
+  class:list={["border-l-16", color]}
+  src={imageUrl}
+  width={width}
+  height={height}
+  alt={alt}
+/>

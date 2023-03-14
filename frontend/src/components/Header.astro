@@ -1,0 +1,12 @@
+---
+import { getSiteSettings } from "../lib/sanity";
+
+const settings = await getSiteSettings();
+---
+
+<h1
+  class="mt-4 text-3xl md:text-6xl text-riso-red font-bold uppercase text-center"
+>
+  {settings.title}
+</h1>
+<div class="mt-6 border-b-2 border-riso-yellow sticky top-10"></div>

@@ -1,18 +1,11 @@
 ---
 import BlogFeed from "../components/blog/BlogFeed.astro";
-import BlogPostCard from "../components/blog/BlogPostCard.astro";
+import Header from "../components/Header.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-import { getSiteSettings } from "../lib/sanity";
-const settings = await getSiteSettings();
 ---
 
 <MainLayout>
-  <h1
-    class="mt-4 text-6xl text-riso-red font-bold font-display uppercase text-center"
-  >
-    {settings.title}
-  </h1>
-  <div class="mt-6 border-b-2 border-riso-yellow sticky top-10"></div>
+  <Header />
   <BlogFeed />
 </MainLayout>
 

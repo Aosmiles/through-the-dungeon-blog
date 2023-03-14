@@ -5,10 +5,10 @@ import BlogPostCard from "./BlogPostCard.astro";
 const allPosts = await getAllPosts();
 ---
 
-<ul class="container mt-10 flex flex-col gap-6 gallery">
+<ul class="container mt-10 flex flex-col gap-8">
   {
     allPosts.map((post) => (
-      <li>
+      <li class="container mx-auto px-10">
         <BlogPostCard post={post} />
       </li>
     ))

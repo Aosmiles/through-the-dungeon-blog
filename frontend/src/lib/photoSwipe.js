@@ -2,7 +2,7 @@ import PhotoSwipeLightbox from "photoswipe/lightbox";
 
 const lightbox = new PhotoSwipeLightbox({
   gallery: ".gallery",
-  children: "a",
+  children: "li",
   showHideAnimationType: "none",
   zoomAnimationDuration: false,
   pswpModule: () => import("photoswipe"),
