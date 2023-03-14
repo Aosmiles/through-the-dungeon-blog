@@ -1,5 +1,28 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { getAllPostImages, getAllPosts } from "../lib/sanity";
+import { urlForImage } from "../lib/sanityImageUrlBuilder";
+
+const posts = await getAllPosts();
+const images = posts.map((post) => post.images[0]);
 ---
 
-<MainLayout />
+<MainLayout>
+  <ul class="gallery">
+    {
+      images.map((img) => (
+        <li>
+          <a
+            class="ps-image"
+            href={urlForImage(img).url()}
+            data-pswp-width={img.asset.width}
+            data-pswp-height={img.asset.height}
+            target="_blank"
+          >
+            <img src={urlForImage(img).url()} alt="" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</MainLayout>

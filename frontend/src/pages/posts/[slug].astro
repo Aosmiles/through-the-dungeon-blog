@@ -1,25 +1,53 @@
 ---
-import { useSanityClient } from "astro-sanity";
+import FeatureBlock from "../../components/blog/FeatureBlock.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllPosts } from "../../lib/sanity";
 import { urlForImage } from "../../lib/sanityImageUrlBuilder";
+import risoColorClasses from "../../utility/risoColorClasses";
 
 export async function getStaticPaths() {
-  const posts = await useSanityClient().fetch(`*[_type == "post"]`);
+  const posts = await getAllPosts();
 
-  return posts.map(({ slug, title, images }) => {
+  return posts.map((post) => {
     return {
-      params: { slug: slug.current },
-      props: { title, images },
+      params: { slug: post.slug.current },
+      props: { post },
     };
   });
 }
 
 const { slug } = Astro.params;
-const { title, images } = Astro.props;
+const { post } = Astro.props;
+const color = risoColorClasses[post.color];
+const mainImage = urlForImage(post.images[0]).width(640).url();
+const features = post.features;
+console.log(features);
 ---
 
 <MainLayout>
-  <h1>{title}</h1>
-  <p>test</p>
-  <img src={urlForImage(images[0]).url()} alt="" />
+  <article class="container sm mt-6">
+    <span class="text-xs">{post.publishDate.slice(0, 10)}</span>
+    <header class="grid grid-cols-2 gap-5">
+      <hgroup>
+        <h1 class="text-3xl font-semibold uppercase grow">{post.title}</h1>
+        {features ? <FeatureBlock features={post.features} /> : undefined}
+        <p class="mt-auto">
+          {post.description}
+        </p>
+      </hgroup>
+      <a
+        href={mainImage}
+        data-pswp-width="1669"
+        data-pswp-height="2500"
+        target="_blank"
+      >
+        <img
+          class="float-right border-l-16 border-riso-red"
+          src={mainImage}
+          alt=""
+        />
+      </a>
+    </header>
+    <section class="mt-6"></section>
+  </article>
 </MainLayout>

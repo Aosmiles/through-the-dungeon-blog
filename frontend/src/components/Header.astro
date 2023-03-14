@@ -1,11 +1,17 @@
 ---
 import { getSiteSettings } from "../lib/sanity";
+import NavBar from "./NavBar.astro";
 
 const settings = await getSiteSettings();
+const hidden = Astro.url.pathname !== "/";
 ---
 
+<NavBar />
 <h1
-  class="mt-4 text-3xl md:text-6xl text-riso-red font-bold uppercase text-center"
+  class:list={[
+    "mt-4 text-3xl md:text-6xl text-riso-red font-bold uppercase text-center",
+    { hidden },
+  ]}
 >
   {settings.title}
 </h1>

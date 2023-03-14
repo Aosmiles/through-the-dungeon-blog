@@ -1,11 +1,11 @@
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 
-const lightbox = new PhotoSwipeLightbox({
+const lightboxGallery = new PhotoSwipeLightbox({
   gallery: ".gallery",
-  children: "li",
+  children: ".ps-image",
   showHideAnimationType: "none",
   zoomAnimationDuration: false,
   pswpModule: () => import("photoswipe"),
 });
 
-lightbox.init();
+lightboxGallery.init();
