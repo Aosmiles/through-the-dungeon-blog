@@ -6,10 +6,11 @@ import Image from "astro/components/Image.astro";
 const width = 640;
 const height = 300;
 const { post } = Astro.props;
-const imageUrl = urlForImage(post.images[0])
+const imageUrl = urlForImage(post.image)
   .width(width)
   .height(height)
   .auto("format")
+  .fit("max")
   .url();
 const date = post.publishDate.slice(0, 10);
 const color = risoColorClasses[post.color];
@@ -22,7 +23,7 @@ const color = risoColorClasses[post.color];
     src={imageUrl}
     width={width}
     height={height}
-    alt={post.images[0].altText}
+    alt={post.image.alt}
     loading="lazy"
   />
   <h2 class:list={["text-xl md:text-2xl font-semibold uppercase", color.title]}>

@@ -1,7 +1,7 @@
 import catagory from './catagory'
 import feature from './feature'
-import imagePLus from './imagePlus'
+import illustration from './illustration'
 import post from './post'
 import siteSettings from './siteSettings'
 
-export const schemaTypes = [post, feature, catagory, siteSettings, imagePLus]
+export const schemaTypes = [post, feature, catagory, siteSettings, illustration]
