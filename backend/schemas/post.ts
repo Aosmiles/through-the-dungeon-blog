@@ -68,7 +68,7 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'publishDate',
+      name: 'date',
       title: 'Date Published',
       type: 'datetime',
       initialValue: new Date().toISOString(),
