@@ -25,13 +25,13 @@ export default {
     border: "border-riso-teal",
   },
   yellow: {
-    title: "text-riso-yellow",
+    title: "text-riso-yellow-dark",
     text: "text-riso-yellow-dark",
     border: "border-riso-yellow",
   },
   black: {
-    title: "text-riso-black",
-    text: "text-riso-black-dark",
-    border: "border-riso-black",
+    title: "text-black",
+    text: "text-black",
+    border: "border-black",
   },
 };

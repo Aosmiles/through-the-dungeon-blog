@@ -6,11 +6,12 @@ import NavBar from "../components/NavBar.astro";
 
 <html class="font-display" lang="en">
   <BaseHead />
-  <body class="container mx-auto max-w-2xl">
+  <body class="container lg mx-auto">
     <Header />
     <slot />
-  </body><script>
-    import "../lib/photoSwipe";
-    import "photoswipe/style.css";
-  </script>
+    <script>
+      import "../lib/photoSwipe";
+      import "photoswipe/style.css";
+    </script>
+  </body>
 </html>
