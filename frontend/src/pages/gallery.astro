@@ -1,39 +1,19 @@
 ---
+import GalleryImage from "../components/GalleryImage.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import { getAllIllustrations } from "../lib/sanity";
-import { urlForImage } from "../lib/sanityImageUrlBuilder";
+
 const illustrations = await getAllIllustrations();
-const width = 800;
 ---
 
 <MainLayout>
   <ul
-    class="mt-6 container md mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 gallery"
+    class="mt-6 container md mx-auto columns-1 md:columns-2 lg:columns-3 gallery"
   >
     {
       illustrations.map((i) => (
-        <li>
-          <a
-            href=""
-            class="ps-image"
-            data-pswp-src={urlForImage(i.image)
-              .width(width)
-              .fit("max")
-              .auto("format")
-              .url()}
-            data-pswp-width={width}
-            data-pswp-height={width / i.size.aspectRatio}
-            target="_blank"
-          >
-            <img
-              src={urlForImage(i.image)
-                .width(400)
-                .height(400)
-                .auto("format")
-                .url()}
-              alt={i.alt}
-            />
-          </a>
+        <li class="mb-5">
+          <GalleryImage illustration={i} />
         </li>
       ))
     }

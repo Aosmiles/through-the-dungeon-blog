@@ -17,7 +17,7 @@ const color = risoColorClasses[post.color];
 const postUrl = `posts/${post.slug.current}`;
 ---
 
-<article class="container sm flex flex-col">
+<article class="flex flex-col">
   <span class:list={["text-xs", color.text]}>{date}</span>
   <a href={postUrl}
     ><Image
