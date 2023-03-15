@@ -19,4 +19,19 @@ export default {
     text: "text-riso-purple-dark",
     border: "border-riso-purple",
   },
+  teal: {
+    title: "text-riso-teal",
+    text: "text-riso-teal-dark",
+    border: "border-riso-teal",
+  },
+  yellow: {
+    title: "text-riso-yellow",
+    text: "text-riso-yellow-dark",
+    border: "border-riso-yellow",
+  },
+  black: {
+    title: "text-riso-black",
+    text: "text-riso-black-dark",
+    border: "border-riso-black",
+  },
 };

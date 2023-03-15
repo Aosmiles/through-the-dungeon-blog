@@ -7,7 +7,9 @@ const width = 800;
 ---
 
 <MainLayout>
-  <ul class="mt-6 columns-2 md:columns-3 lg:columns-4 gallery">
+  <ul
+    class="mt-6 container md mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 gallery"
+  >
     {
       illustrations.map((i) => (
         <li>
@@ -21,8 +23,16 @@ const width = 800;
               .url()}
             data-pswp-width={width}
             data-pswp-height={width / i.size.aspectRatio}
+            target="_blank"
           >
-            <img src={urlForImage(i.image).width(300).url()} alt={i.alt} />
+            <img
+              src={urlForImage(i.image)
+                .width(400)
+                .height(400)
+                .auto("format")
+                .url()}
+              alt={i.alt}
+            />
           </a>
         </li>
       ))
