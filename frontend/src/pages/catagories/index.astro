@@ -1,0 +1,16 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { allCatagories } from "../../lib/sanity";
+---
+
+<MainLayout>
+  <ul>
+    {
+      allCatagories.map((catagory) => (
+        <li>
+          <a href={`/catagories/${catagory.slug.current}/`}>{catagory.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</MainLayout>

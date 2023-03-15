@@ -1,0 +1,20 @@
+---
+import BlogFeed from "../../components/blog/BlogFeed.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { allCatagories, allPosts, getPostsByCatagory } from "../../lib/sanity";
+export async function getStaticPaths() {
+  return allCatagories.map((catagory) => {
+    return {
+      params: { catagory: catagory.slug.current },
+      props: { catagory },
+    };
+  });
+}
+const { catagory } = Astro.props;
+const filteredPosts = await getPostsByCatagory(catagory._id);
+---
+
+<MainLayout>
+  <h1>{catagory.title}</h1>
+  <BlogFeed posts={filteredPosts} />
+</MainLayout>

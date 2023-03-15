@@ -1,13 +1,12 @@
 ---
-import { getAllPosts } from "../../lib/sanity";
 import BlogPostCard from "./BlogPostCard.astro";
 
-const allPosts = await getAllPosts();
+const { posts } = Astro.props;
 ---
 
 <ul class="container mt-10 px-10 flex flex-col gap-8 items-center">
   {
-    allPosts.map((post) => (
+    posts.map((post) => (
       <li class="w-fit">
         <BlogPostCard post={post} />
       </li>

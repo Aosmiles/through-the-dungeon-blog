@@ -1,14 +1,12 @@
 ---
 import FeatureBlock from "../../components/blog/FeatureBlock.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
-import { getAllPosts } from "../../lib/sanity";
+import { allPosts } from "../../lib/sanity";
 import { urlForImage } from "../../lib/sanityImageUrlBuilder";
 import risoColorClasses from "../../utility/risoColorClasses";
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts();
-
-  return posts.map((post) => {
+  return allPosts.map((post) => {
     return {
       params: { slug: post.slug.current },
       props: { post },

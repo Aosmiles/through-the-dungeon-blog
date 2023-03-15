@@ -1,6 +1,6 @@
 import { useSanityClient, groq } from "astro-sanity";
 
-export async function getAllPosts() {
+async function getAllPosts() {
   const query = groq`*[_type == "post"]{
   ...,
    illustration->{
@@ -12,8 +12,9 @@ export async function getAllPosts() {
   const allPosts = await useSanityClient().fetch(query);
   return allPosts;
 }
+export const allPosts = await getAllPosts();
 
-export async function getAllIllustrations() {
+async function getAllIllustrations() {
   const query = groq`*[_type == "illustration"] {
   ...,
   "size": image.asset->metadata.dimensions
@@ -21,6 +22,27 @@ export async function getAllIllustrations() {
 | order(_createdAt desc)`;
   const illustrations = await useSanityClient().fetch(query);
   return illustrations;
+}
+export const allIllustrations = await getAllIllustrations();
+
+async function getAllCatagories() {
+  const query = groq`*[_type == "catagory"] 
+| order(title asc)`;
+  const catagories = await useSanityClient().fetch(query);
+  return catagories;
+}
+export const allCatagories = await getAllCatagories();
+
+export async function getPostsByCatagory(catagoryID) {
+  const query = groq`*[_type == "post" && '${catagoryID}' in catagories[]._ref]{
+  ...,
+   illustration->{
+    ...,
+    "size": image.asset->metadata.dimensions
+  }
+}
+| order(_createdAt desc)`;
+  return await useSanityClient().fetch(query);
 }
 
 export async function getSiteSettings() {
