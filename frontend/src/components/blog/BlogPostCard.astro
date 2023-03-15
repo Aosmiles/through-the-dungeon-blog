@@ -6,28 +6,31 @@ import Image from "astro/components/Image.astro";
 const width = 640;
 const height = 300;
 const { post } = Astro.props;
-const imageUrl = urlForImage(post.image)
+const imageUrl = urlForImage(post.illustration.image)
   .width(width)
   .height(height)
   .auto("format")
   .fit("max")
   .url();
-const date = post.publishDate.slice(0, 10);
+const date = post.date.slice(0, 10);
 const color = risoColorClasses[post.color];
+const postUrl = `posts/${post.slug.current}`;
 ---
 
 <article class="container sm flex flex-col">
   <span class:list={["text-xs", color.text]}>{date}</span>
-  <Image
-    class:list={["border-l-16", color.border]}
-    src={imageUrl}
-    width={width}
-    height={height}
-    alt={post.image.alt}
-    loading="lazy"
-  />
+  <a href={postUrl}
+    ><Image
+      class:list={["border-l-16", color.border]}
+      src={imageUrl}
+      width={width}
+      height={height}
+      alt={post.illustration.alt}
+      loading="lazy"
+    /></a
+  >
   <h2 class:list={["text-xl md:text-2xl font-semibold uppercase", color.title]}>
-    <a href={`posts/${post.slug.current}`}>{post.title}</a>
+    <a href={postUrl}>{post.title}</a>
   </h2>
   <p class:list={["md:text-lg", color.text]}>{post.description}</p>
 </article>

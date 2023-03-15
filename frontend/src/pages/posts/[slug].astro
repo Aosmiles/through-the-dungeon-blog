@@ -19,14 +19,17 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const { post } = Astro.props;
 const color = risoColorClasses[post.color];
-const mainImage = urlForImage(post.image).width(640).fit("max").url();
+const mainImage = urlForImage(post.illustration.image)
+  .width(640)
+  .fit("max")
+  .url();
 const features = post.features;
-console.log(features);
+const date = post.date.slice(0, 10);
 ---
 
 <MainLayout>
   <article class="container sm mt-6 gallery">
-    <span class="text-xs">{post.publishDate.slice(0, 10)}</span>
+    <span class="text-xs">{}</span>
     <header class="grid grid-cols-2 gap-5">
       <hgroup>
         <h1 class="text-3xl font-semibold uppercase grow">{post.title}</h1>
@@ -40,6 +43,7 @@ console.log(features);
         href={mainImage}
         data-pswp-src={mainImage}
         data-pswp-width={640}
+        data-pswp-height={640 / post.illustration.size.aspectRatio}
         target="_blank"
       >
         <img

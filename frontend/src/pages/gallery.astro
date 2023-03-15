@@ -1,5 +1,31 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { getAllIllustrations } from "../lib/sanity";
+import { urlForImage } from "../lib/sanityImageUrlBuilder";
+const illustrations = await getAllIllustrations();
+const width = 800;
 ---
 
-<MainLayout />
+<MainLayout>
+  <ul class="mt-6 columns-2 md:columns-3 lg:columns-4 gallery">
+    {
+      illustrations.map((i) => (
+        <li>
+          <a
+            href=""
+            class="ps-image"
+            data-pswp-src={urlForImage(i.image)
+              .width(width)
+              .fit("max")
+              .auto("format")
+              .url()}
+            data-pswp-width={width}
+            data-pswp-height={width / i.size.aspectRatio}
+          >
+            <img src={urlForImage(i.image).width(300).url()} alt={i.alt} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</MainLayout>
