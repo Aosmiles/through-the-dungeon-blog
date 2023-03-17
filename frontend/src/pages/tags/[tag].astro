@@ -1,7 +1,7 @@
 ---
 import BlogFeed from "../../components/blog/BlogFeed.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
-import { allCatagories, allPosts, getPostsByCatagory } from "../../lib/sanity";
+import { allCatagories, allPosts } from "../../lib/sanity"; //change to tag
 export async function getStaticPaths() {
   return allCatagories.map((catagory) => {
     return {
@@ -11,7 +11,12 @@ export async function getStaticPaths() {
   });
 }
 const { catagory } = Astro.props;
-const filteredPosts = await getPostsByCatagory(catagory._id);
+const filteredPosts = allPosts.filter((post) => {
+  if (post.catagories) {
+    return post.catagories.includes();
+  }
+  return false;
+});
 ---
 
 <MainLayout>

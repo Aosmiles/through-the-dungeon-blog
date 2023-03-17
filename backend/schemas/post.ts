@@ -57,15 +57,22 @@ export default defineType({
       validation: (Rule) => Rule.max(255).warning(`255 characters max`),
     }),
     defineField({
-      name: 'catagories',
-      title: 'Catagories',
+      name: 'body',
+      title: 'Body Content',
+      type: 'array',
+      of: [{type: 'block'}],
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
       type: 'array',
       of: [
         {
           type: 'reference',
-          to: [{type: 'catagory'}],
+          to: [{type: 'tag'}],
         },
       ],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'date',

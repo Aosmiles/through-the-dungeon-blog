@@ -36,15 +36,16 @@ export default defineType({
       initialValue: '',
     }),
     defineField({
-      name: 'catagories',
-      title: 'Catagories',
+      name: 'tags',
+      title: 'Tags',
       type: 'array',
       of: [
         {
           type: 'reference',
-          to: [{type: 'catagory'}],
+          to: [{type: 'tag'}],
         },
       ],
+      validation: (Rule) => Rule.required(),
     }),
   ],
 })

@@ -1,0 +1,14 @@
+---
+const { catagories } = Astro.props;
+console.log(catagories[0].slug);
+---
+
+<ul class="flex gap-2">
+  {
+    catagories.map((catagory) => (
+      <li class="bg-riso-purple text-white w-fit px-3">
+        <a href={`/catagories/`}>{catagory.title}</a>
+      </li>
+    ))
+  }
+</ul>

@@ -1,48 +1,45 @@
 import { useSanityClient, groq } from "astro-sanity";
 
-async function getAllPosts() {
-  const query = groq`*[_type == "post"]{
+//get all post with refs
+//get all illustrations with size
+//get all tags
+
+let allPosts;
+let allIllustrations;
+let allTags;
+
+export async function getAllPosts() {
+  if (allPosts) return allPosts;
+  const query = groq`*[_type == "post"] {
   ...,
-   illustration->{
+  illustration->{
     ...,
-    "size": image.asset->metadata.dimensions
-  }
-}
-| order(_createdAt desc)`;
-  const allPosts = await useSanityClient().fetch(query);
+    "size":image.asset->metadata.dimensions
+  },
+    tags[]->,
+    "allTags": array::unique([...illustration->tags[]->{color, slug},...tags[]->{color, slug}])
+}`;
+  allPosts = await useSanityClient().fetch(query);
   return allPosts;
 }
-export const allPosts = await getAllPosts();
 
-async function getAllIllustrations() {
+export async function getAllIllustrations() {
+  if (allIllustrations) return allIllustrations;
   const query = groq`*[_type == "illustration"] {
   ...,
   "size": image.asset->metadata.dimensions
 }
 | order(_createdAt desc)`;
-  const illustrations = await useSanityClient().fetch(query);
-  return illustrations;
+  allIllustrations = await useSanityClient().fetch(query);
+  return allIllustrations;
 }
-export const allIllustrations = await getAllIllustrations();
 
-async function getAllCatagories() {
-  const query = groq`*[_type == "catagory"] 
+export async function getAllTags() {
+  if (allTags) return allTags;
+  const query = groq`*[_type == "tag"] 
 | order(title asc)`;
-  const catagories = await useSanityClient().fetch(query);
-  return catagories;
-}
-export const allCatagories = await getAllCatagories();
-
-export async function getPostsByCatagory(catagoryID) {
-  const query = groq`*[_type == "post" && '${catagoryID}' in catagories[]._ref]{
-  ...,
-   illustration->{
-    ...,
-    "size": image.asset->metadata.dimensions
-  }
-}
-| order(_createdAt desc)`;
-  return await useSanityClient().fetch(query);
+  allTags = await useSanityClient().fetch(query);
+  return allTags;
 }
 
 export async function getSiteSettings() {
@@ -50,3 +47,26 @@ export async function getSiteSettings() {
   const siteSettings = await useSanityClient().fetch(query);
   return siteSettings;
 }
+
+/*
+
+tags
+*[_type == "post"] {
+    "allTags": array::unique([...illustration->tags[]->slug.current,...tags[]->slug.current])
+}
+| order(_createdAt desc)
+
+
+----ALL POSTS----
+*[_type == "post"] {
+  ...,
+  illustration->{
+    ...,
+    "size":image.asset->metadata.dimensions
+  },
+    tags[]->,
+    "allTags": array::unique([...illustration->tags[]->slug.current,...tags[]->slug.current])
+}
+| order(_createdAt desc)
+
+*/
