@@ -1,9 +1,5 @@
 import { useSanityClient, groq } from "astro-sanity";
 
-//get all post with refs
-//get all illustrations with size
-//get all tags
-
 let allPosts;
 let allIllustrations;
 let allTags;
@@ -17,7 +13,7 @@ export async function getAllPosts() {
     "size":image.asset->metadata.dimensions
   },
     tags[]->,
-    "allTags": array::unique([...illustration->tags[]->{color, slug},...tags[]->{color, slug}])
+    "tagSlugs":tags[]->slug.current
 }`;
   allPosts = await useSanityClient().fetch(query);
   return allPosts;

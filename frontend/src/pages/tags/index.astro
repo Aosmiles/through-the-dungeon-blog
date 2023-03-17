@@ -1,14 +1,16 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import { allCatagories } from "../../lib/sanity";
+import { getAllTags } from "../../lib/sanity";
+
+const allTags = await getAllTags();
 ---
 
 <MainLayout>
   <ul>
     {
-      allCatagories.map((catagory) => (
+      allTags.map((tag) => (
         <li>
-          <a href={`/catagories/${catagory.slug.current}`}>{catagory.title}</a>
+          <a href={`/tags/${tag.slug.current}`}>{tag.title}</a>
         </li>
       ))
     }

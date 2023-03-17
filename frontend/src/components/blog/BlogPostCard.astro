@@ -2,7 +2,7 @@
 import { urlForImage } from "../../lib/sanityImageUrlBuilder";
 import risoColorClasses from "../../utility/risoColorClasses.js";
 import Image from "astro/components/Image.astro";
-import BlogPostCatagories from "./BlogPostCatagories.astro";
+import BlogPostTags from "./BlogPostTags.astro";
 
 const width = 640;
 const height = 300;
@@ -15,7 +15,7 @@ const imageUrl = urlForImage(post.illustration.image)
   .url();
 const date = post.date.slice(0, 10);
 const color = risoColorClasses[post.color];
-const postUrl = `/posts/${post.slug.current}/`;
+const postUrl = `/blog/posts/${post.slug.current}/`;
 ---
 
 <article class="flex flex-col">
@@ -34,9 +34,5 @@ const postUrl = `/posts/${post.slug.current}/`;
     <a href={postUrl}>{post.title}</a>
   </h2>
   <p class:list={["md:text-lg", color.text]}>{post.description}</p>
-  {
-    post.catagories ? (
-      <BlogPostCatagories catagories={post.catagories} />
-    ) : undefined
-  }
+  <BlogPostTags tags={post.tags} />
 </article>

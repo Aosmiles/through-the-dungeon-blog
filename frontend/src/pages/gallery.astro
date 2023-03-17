@@ -1,7 +1,9 @@
 ---
 import GalleryImage from "../components/GalleryImage.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-import { allIllustrations } from "../lib/sanity";
+import { getAllIllustrations } from "../lib/sanity";
+
+const allIllustrations = await getAllIllustrations();
 ---
 
 <MainLayout>
