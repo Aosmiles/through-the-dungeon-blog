@@ -1,0 +1,18 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllTags } from "../../lib/sanity";
+
+const allTags = await getAllTags();
+---
+
+<MainLayout>
+  <ul>
+    {
+      allTags.map((tag) => (
+        <li>
+          <a href={`/tags/${tag.slug.current}`}>{tag.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</MainLayout>

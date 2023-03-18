@@ -1,0 +1,9 @@
+---
+const { prevUrl, nextUrl } = Astro.props;
+---
+
+<div class="mb-10 flex gap-5">
+  {prevUrl && <a href={prevUrl}>Previous Page</a>}
+
+  {nextUrl && <a href={nextUrl}>Next Page</a>}
+</div>

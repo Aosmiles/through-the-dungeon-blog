@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'catagory',
-  title: 'Catagory',
+  name: 'tag',
+  title: 'Tag',
   type: 'document',
   fields: [
     defineField({
@@ -26,6 +26,23 @@ export default defineType({
       title: 'Description',
       type: 'text',
       validation: (Rule) => Rule.max(140).warning('140 characters max').required(),
+    }),
+    defineField({
+      name: 'color',
+      title: 'Color',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          {title: 'Red', value: 'red'},
+          {title: 'Blue', value: 'blue'},
+          {title: 'Green', value: 'green'},
+          {title: 'Purple', value: 'purple'},
+          {title: 'Teal', value: 'teal'},
+          {title: 'Yellow', value: 'yellow'},
+          {title: 'Black', value: 'black'},
+        ],
+      },
     }),
   ],
 })

@@ -1,0 +1,26 @@
+---
+import BlogFeed from "../../components/blog/BlogFeed.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllPosts, getAllTags } from "../../lib/sanity";
+
+export async function getStaticPaths() {
+  const allTags = await getAllTags();
+  return allTags.map((tag) => {
+    return {
+      params: { tag: tag.slug.current },
+      props: { tag },
+    };
+  });
+}
+const allPosts = await getAllPosts();
+
+const { tag } = Astro.props;
+const filteredPosts = allPosts.filter((post) => {
+  return post.tagSlugs.includes(tag.slug.current);
+});
+---
+
+<MainLayout>
+  <h1>{tag.title}</h1>
+  <BlogFeed posts={filteredPosts} />
+</MainLayout>
