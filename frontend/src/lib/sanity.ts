@@ -14,7 +14,8 @@ export async function getAllPosts() {
   },
     tags[]->,
     "tagSlugs":tags[]->slug.current
-}`;
+}
+| order(date desc)`;
   allPosts = await useSanityClient().fetch(query);
   return allPosts;
 }
