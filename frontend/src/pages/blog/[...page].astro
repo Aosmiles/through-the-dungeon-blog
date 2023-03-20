@@ -6,6 +6,7 @@ import { getAllPosts } from "../../lib/sanity";
 
 export async function getStaticPaths({ paginate }) {
   const posts = await getAllPosts();
+
   posts.map((post) => {
     return {
       params: { slug: post.slug.current },
