@@ -1,5 +1,6 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import NavBar from "../components/NavBar.astro";
 ---
@@ -9,6 +10,7 @@ import NavBar from "../components/NavBar.astro";
   <body class="container lg mx-auto">
     <Header />
     <slot />
+    <Footer />
     <script>
       import "../lib/photoSwipe";
       import "photoswipe/style.css";
