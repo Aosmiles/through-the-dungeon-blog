@@ -21,7 +21,9 @@ const { page } = Astro.props;
 ---
 
 <MainLayout>
-  <h2>blog</h2>
-  <BlogFeed posts={page.data} />
-  <PaginationNav {page} />
+  <section class="container mt-10 px-10">
+    <h2>blog</h2>
+    <BlogFeed posts={page.data} />
+    <PaginationNav {page} />
+  </section>
 </MainLayout>

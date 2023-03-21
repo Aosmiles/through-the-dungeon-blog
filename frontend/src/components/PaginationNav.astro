@@ -5,8 +5,8 @@ const nextUrl = page.url.next;
 const currentPage = page.currentPage;
 ---
 
-<div class="mb-10 mx-auto flex gap-5">
+<div class="mb-10 mx-auto flex justify-between">
   {prevUrl && <a href={prevUrl}>Previous Page</a>}
-  <span>{currentPage}</span>
+  <a href="/blog"> Home</a>
   {nextUrl && <a href={nextUrl}>Next Page</a>}
 </div>
