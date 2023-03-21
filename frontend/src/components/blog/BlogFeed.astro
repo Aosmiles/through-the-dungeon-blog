@@ -8,7 +8,7 @@ const { posts } = Astro.props;
   {
     posts.map((post) => (
       <li class="flex">
-        <span class="relative right-2 text-riso-red">{">>"}</span>
+        <span class="mr-3 text-riso-red">{">>"}</span>
         <BlogPostCard post={post} />
       </li>
     ))
