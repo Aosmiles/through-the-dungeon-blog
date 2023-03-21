@@ -33,7 +33,7 @@ export default {
     title: "text-riso-yellow-dark",
     text: "text-riso-yellow-dark",
     border: "border-riso-yellow",
-    bg: "bg-riso-yellow",
+    bg: "bg-riso-yellow-dark",
   },
   black: {
     title: "text-black",
