@@ -1,14 +1,16 @@
 ---
 interface Props {
   href: string;
-  text: string;
 }
 
-const { href, text } = Astro.props;
+const { href } = Astro.props;
 const currentPage = Astro.url.pathname === href;
 ---
 
-<a class:list={[{ "current-page": currentPage }]} href={href}>{text}</a>
+<a
+  class:list={["hover:text-riso-red", { "current-page": currentPage }]}
+  href={href}><slot /></a
+>
 
 <style>
   a {

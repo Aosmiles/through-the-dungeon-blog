@@ -2,14 +2,16 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import NavBar from "../components/NavBar.astro";
+import ContentLayout from "./ContentLayout.astro";
 ---
 
-<html class="font-display" lang="en">
+<html class="" lang="en">
   <BaseHead />
-  <body class="container lg mx-auto">
+  <body class="font-display container mx-auto px-4 md:px-10">
     <Header />
-    <slot />
+    <ContentLayout>
+      <slot />
+    </ContentLayout>
     <Footer />
     <script>
       import "../lib/photoSwipe";
