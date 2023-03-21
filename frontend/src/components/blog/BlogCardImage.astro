@@ -1,0 +1,23 @@
+---
+import { urlForImage } from "../../lib/sanityImageUrlBuilder";
+
+const { illustration, borderColor } = Astro.props;
+
+const width = 672;
+const height = 300;
+const imageUrl = urlForImage(illustration.image)
+  .width(width)
+  .height(height)
+  .auto("format")
+  .fit("max")
+  .url();
+---
+
+<img
+  class:list={["border-l-16", borderColor.border]}
+  src={imageUrl}
+  width={width}
+  height={height}
+  alt={illustration.alt}
+  loading="lazy"
+/>

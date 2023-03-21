@@ -4,10 +4,11 @@ import BlogPostCard from "./BlogPostCard.astro";
 const { posts } = Astro.props;
 ---
 
-<ul class="flex flex-col gap-8 items-center">
+<ul class="flex flex-col gap-8">
   {
     posts.map((post) => (
-      <li>
+      <li class="flex">
+        <span class="relative right-2 text-riso-red">{">>"}</span>
         <BlogPostCard post={post} />
       </li>
     ))

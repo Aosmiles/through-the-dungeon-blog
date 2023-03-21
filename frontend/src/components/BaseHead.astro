@@ -1,4 +1,8 @@
 ---
+export interface Props {
+  title: string;
+}
+const { title } = Astro.props;
 ---
 
 <head>
@@ -12,5 +16,5 @@
     href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
     rel="stylesheet"
   />
-  <title>Astro</title>
+  <title>{title}</title>
 </head>

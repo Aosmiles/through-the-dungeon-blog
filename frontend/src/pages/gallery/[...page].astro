@@ -1,7 +1,8 @@
 ---
 import Gallery from "../../components/Gallery.astro";
-import GalleryImage from "../../components/GalleryImage.astro";
+
 import PaginationNav from "../../components/PaginationNav.astro";
+
 import MainLayout from "../../layouts/MainLayout.astro";
 import { getAllIllustrations } from "../../lib/sanity";
 
@@ -17,9 +18,10 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page } = Astro.props;
+const title = "Gallery";
 ---
 
-<MainLayout>
+<MainLayout title={title}>
   <Gallery illustrations={page.data} />
   <PaginationNav {page} />
 </MainLayout>
