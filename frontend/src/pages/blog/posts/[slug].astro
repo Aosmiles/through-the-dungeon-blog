@@ -2,8 +2,8 @@
 import BlogPostImage from "../../../components/blog/BlogPostImage.astro";
 import FeatureBlock from "../../../components/blog/FeatureBlock.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
+import { sanityPortableText } from "../../../lib/portableText";
 import { getAllPosts } from "../../../lib/sanity";
-import { urlForImage } from "../../../lib/sanityImageUrlBuilder";
 import risoColorClasses from "../../../utility/risoColorClasses";
 
 export async function getStaticPaths() {
@@ -29,15 +29,17 @@ const date = post.date.slice(0, 10);
     <span class="text-xs">{}</span>
     <div>
       <div>
-        <h1>
+        <h1 class="text-xl font-semibold uppercase">
           {post.title}
         </h1>
-        {features && <FeatureBlock features={post.features} />}
+
         <p>
           {post.description}
         </p>
       </div>
       {post.illustration && <BlogPostImage illustration={post.illustration} />}
+      {features && <FeatureBlock features={post.features} />}
+      {post.body && <Fragment set:html={sanityPortableText(post.body)} />}
     </div>
   </article>
 </MainLayout>
