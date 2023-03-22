@@ -6,15 +6,17 @@ import NavBar from "./NavBar.astro";
 const settings = await getSiteSettings();
 ---
 
-<header class="container mx-auto pt-5">
-  <div class="flex flex-row-reverse justify-between gap-4 md:block">
-    <HamburgerMenu />
+<header class="container mx-auto pt-5 bg-white sticky top-0">
+  <div class="flex flex-col-reverse justify-between gap-4 md:block">
     <NavBar />
-    <h1
-      class="text-riso-red text-lg font-semibold uppercase md:font-bold md:text-3xl md:text-center"
-    >
-      {settings.title}
-    </h1>
+    <div class="flex justify-between gap-5 md:block">
+      <h1
+        class="text-riso-red text-lg font-semibold uppercase md:font-bold md:text-3xl md:text-center"
+      >
+        {settings.title}
+      </h1>
+      <HamburgerMenu />
+    </div>
   </div>
   <div class="mt-6 border-b-2 border-riso-yellow"></div>
 </header>
