@@ -4,7 +4,7 @@ const { color, slug, title } = Astro.props;
 ---
 
 <a
-  class:list={["text-white w-fit px-2 text-sm", risoColorClasses[color].bg]}
+  class:list={["block text-white text-sm px-3", risoColorClasses[color].bg]}
   href={`/blog/${slug}`}
 >
   {title}
