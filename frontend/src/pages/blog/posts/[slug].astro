@@ -1,5 +1,6 @@
 ---
 import BlogPostImage from "../../../components/blog/BlogPostImage.astro";
+import BlogPostTags from "../../../components/blog/BlogPostTags.astro";
 import FeatureBlock from "../../../components/blog/FeatureBlock.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { sanityPortableText } from "../../../lib/portableText";
@@ -38,5 +39,8 @@ const date = post.date.slice(0, 10);
       {features && <FeatureBlock features={post.features} />}
       {post.body && <Fragment set:html={sanityPortableText(post.body)} />}
     </div>
+    <footer>
+      <BlogPostTags tags={post.tags} />
+    </footer>
   </article>
 </MainLayout>
