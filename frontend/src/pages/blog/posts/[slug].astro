@@ -25,10 +25,10 @@ const date = post.date.slice(0, 10);
 ---
 
 <MainLayout title={post.title}>
-  <article class="gallery">
+  <article class:list={["gallery", color.text]}>
     <span class="text-xs">{date}</span>
     <div>
-      <h1 class="text-xl font-semibold uppercase">
+      <h1 class:list={["text-2xl font-semibold uppercase", color.title]}>
         {post.title}
       </h1>
       <p>
