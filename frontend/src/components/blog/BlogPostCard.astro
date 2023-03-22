@@ -10,17 +10,19 @@ const postUrl = `/blog/posts/${post.slug.current}/`;
 ---
 
 <article>
-  <span class:list={["text-xs", color.text]}>{date}</span>
-  <a href={postUrl}>
+  <a class="relative" href={postUrl}>
+    <span class="absolute -left-6 md:-left-8 text-riso-red">{">>"}</span>
+    <span class:list={["text-xs", color.text]}>{date}</span>
     {
       post.illustration && (
         <BlogCardImage illustration={post.illustration} borderColor={color} />
       )
     }
+    <h2 class:list={["mt-1 md:text-2xl font-semibold uppercase", color.title]}>
+      {post.title}
+    </h2>
   </a>
-  <h2 class:list={["mt-1 md:text-2xl font-semibold uppercase", color.title]}>
-    <a href={postUrl}>{post.title}</a>
-  </h2>
+
   <p class:list={[" md:text-lg", color.text]}>{post.description}</p>
   <BlogPostTags tags={post.tags} />
 </article>
