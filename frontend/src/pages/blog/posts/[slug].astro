@@ -26,17 +26,14 @@ const date = post.date.slice(0, 10);
 
 <MainLayout title={post.title}>
   <article class="gallery">
-    <span class="text-xs">{}</span>
+    <span class="text-xs">{date}</span>
     <div>
-      <div>
-        <h1 class="text-xl font-semibold uppercase">
-          {post.title}
-        </h1>
-
-        <p>
-          {post.description}
-        </p>
-      </div>
+      <h1 class="text-xl font-semibold uppercase">
+        {post.title}
+      </h1>
+      <p>
+        {post.description}
+      </p>
       {post.illustration && <BlogPostImage illustration={post.illustration} />}
       {features && <FeatureBlock features={post.features} />}
       {post.body && <Fragment set:html={sanityPortableText(post.body)} />}
