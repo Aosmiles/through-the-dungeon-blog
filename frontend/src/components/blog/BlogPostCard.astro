@@ -1,38 +1,26 @@
 ---
-import { urlForImage } from "../../lib/sanityImageUrlBuilder";
 import risoColorClasses from "../../utility/risoColorClasses.js";
-import Image from "astro/components/Image.astro";
+import BlogCardImage from "./BlogCardImage.astro";
 import BlogPostTags from "./BlogPostTags.astro";
 
-const width = 640;
-const height = 300;
 const { post } = Astro.props;
-const imageUrl = urlForImage(post.illustration.image)
-  .width(width)
-  .height(height)
-  .auto("format")
-  .fit("max")
-  .url();
 const date = post.date.slice(0, 10);
 const color = risoColorClasses[post.color];
 const postUrl = `/blog/posts/${post.slug.current}/`;
 ---
 
-<article class="flex flex-col">
+<article>
   <span class:list={["text-xs", color.text]}>{date}</span>
-  <a href={postUrl}
-    ><Image
-      class:list={["border-l-16", color.border]}
-      src={imageUrl}
-      width={width}
-      height={height}
-      alt={post.illustration.alt}
-      loading="lazy"
-    /></a
-  >
-  <h2 class:list={["text-xl md:text-2xl font-semibold uppercase", color.title]}>
+  <a href={postUrl}>
+    {
+      post.illustration && (
+        <BlogCardImage illustration={post.illustration} borderColor={color} />
+      )
+    }
+  </a>
+  <h2 class:list={["mt-1 md:text-2xl font-semibold uppercase", color.title]}>
     <a href={postUrl}>{post.title}</a>
   </h2>
-  <p class:list={["md:text-lg", color.text]}>{post.description}</p>
+  <p class:list={[" md:text-lg", color.text]}>{post.description}</p>
   <BlogPostTags tags={post.tags} />
 </article>

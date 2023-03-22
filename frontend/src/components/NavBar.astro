@@ -1,12 +1,15 @@
 ---
+import HamburgerMenu from "./HamburgerMenu.astro";
 import NavBarLink from "./NavBarLink.astro";
 ---
 
-<ul
-  class="mt-4 py-2 flex gap-4 text-riso-blue-dark justify-center bg-white sticky top-0"
->
-  <li><NavBarLink href="/" text="Home" /></li>
-  <li><NavBarLink href="/blog/" text="Blog" /></li>
-  <li><NavBarLink href="/gallery/" text="Gallery" /></li>
-  <li><NavBarLink href="/about/" text="About" /></li>
-</ul>
+<nav id="nav-menu" class="hidden md:block">
+  <ul
+    class="container mx-auto text-riso-blue text-center bg-white gap-6 flex flex-col md:flex-row md:justify-center"
+  >
+    <li><NavBarLink href="/">Home</NavBarLink></li>
+    <li><NavBarLink href="/blog/">Blog</NavBarLink></li>
+    <li><NavBarLink href="/gallery/">Gallery</NavBarLink></li>
+    <li><NavBarLink href="/about/">About</NavBarLink></li>
+  </ul>
+</nav>

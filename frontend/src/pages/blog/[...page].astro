@@ -1,6 +1,5 @@
 ---
 import BlogFeed from "../../components/blog/BlogFeed.astro";
-import BlogPagination from "../../components/blog/BlogPagination.astro";
 import PaginationNav from "../../components/PaginationNav.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
 import { getAllPosts } from "../../lib/sanity";
@@ -14,16 +13,14 @@ export async function getStaticPaths({ paginate }) {
       props: { post },
     };
   });
-  return paginate(posts, { pageSize: 3 });
+  return paginate(posts, { pageSize: 5 });
 }
 
 const { page } = Astro.props;
+const title = "Blog";
 ---
 
-<MainLayout>
-  <section class="container mt-10 px-10">
-    <h2>blog</h2>
-    <BlogFeed posts={page.data} />
-    <PaginationNav {page} />
-  </section>
+<MainLayout title={title}>
+  <BlogFeed posts={page.data} />
+  <PaginationNav {page} />
 </MainLayout>

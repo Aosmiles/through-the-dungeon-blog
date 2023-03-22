@@ -1,0 +1,11 @@
+---
+import risoColorClasses from "../utility/risoColorClasses";
+const { color, slug, title } = Astro.props;
+---
+
+<a
+  class:list={["text-white w-fit px-2 text-sm", risoColorClasses[color].bg]}
+  href={`/blog/${slug}`}
+>
+  {title}
+</a>
