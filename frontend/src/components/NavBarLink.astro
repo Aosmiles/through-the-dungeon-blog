@@ -8,16 +8,6 @@ const currentPage = Astro.url.pathname === href;
 ---
 
 <a
-  class:list={["hover:text-riso-red", { "current-page": currentPage }]}
+  class:list={["hover:text-riso-red block", { underline: currentPage }]}
   href={href}><slot /></a
 >
-
-<style>
-  a {
-    text-decoration: none;
-  }
-
-  .current-page {
-    text-decoration: underline;
-  }
-</style>
