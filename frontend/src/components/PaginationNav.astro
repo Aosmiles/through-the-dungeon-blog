@@ -9,16 +9,16 @@ console.log(page);
 <div class="text-riso-blue my-6 flex">
   {
     prevUrl && (
-      <a class="hover:underline" href={prevUrl}>
-        {"<< Previous Page"}
+      <a class="hover:underline py-1 pr-3" href={prevUrl}>
+        {"<< Previous"}
       </a>
     )
   }
 
   {
     nextUrl && (
-      <a class="ml-auto hover:underline" href={nextUrl}>
-        {"Next Page >>"}
+      <a class="ml-auto py-1 pl-3  hover:underline" href={nextUrl}>
+        {"Next >>"}
       </a>
     )
   }
