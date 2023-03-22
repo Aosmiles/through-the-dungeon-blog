@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import NavBar from "../components/NavBar.astro";
 
 import ContentLayout from "./ContentLayout.astro";
 
@@ -17,6 +18,7 @@ const { title } = Astro.props;
     class="font-display container mx-auto flex flex-col min-h-screen px-4 md:px-10"
   >
     <Header />
+
     <ContentLayout>
       <slot />
     </ContentLayout>
@@ -24,6 +26,10 @@ const { title } = Astro.props;
     <script>
       import "../lib/photoSwipe";
       import "photoswipe/style.css";
+
+      document.querySelector(".hamburger").addEventListener("click", () => {
+        document.querySelector(".nav-links").classList.toggle("expanded");
+      });
     </script>
   </body>
 </html>

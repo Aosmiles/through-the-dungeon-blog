@@ -3,20 +3,14 @@ import { getSiteSettings } from "../lib/sanity";
 import NavBar from "./NavBar.astro";
 
 const settings = await getSiteSettings();
-const hidden = Astro.url.pathname !== "/";
 ---
 
-<NavBar />
 <header class="container mx-auto">
-  <!-- <h1
-    class:list={["text-riso-red font-bold uppercase text-center", { hidden }]}
-  >
-    {settings.title}
-  </h1> -->
+  <NavBar />
   <h1
     class="text-riso-red text-lg font-semibold uppercase md:font-bold md:text-3xl md:text-center"
   >
     {settings.title}
   </h1>
+  <div class="mt-6 border-b-2 border-riso-yellow"></div>
 </header>
-<div class="mt-6 border-b-2 border-riso-yellow"></div>
