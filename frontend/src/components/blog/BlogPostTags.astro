@@ -1,19 +1,14 @@
 ---
-import risoColorClasses from "../../utility/risoColorClasses";
+import TagLink from "../TagLink.astro";
 
 const { tags } = Astro.props;
 ---
 
-<ul class="mt-2 flex gap-2">
+<ul class="mt-2 flex gap-2 flex-wrap">
   {
     tags.map((tag) => (
       <li>
-        <a
-          class:list={["text-white w-fit px-3", risoColorClasses[tag.color].bg]}
-          href={`/blog/${tag.slug.current}`}
-        >
-          {tag.title}
-        </a>
+        <TagLink title={tag.title} slug={tag.slug.current} color={tag.color} />
       </li>
     ))
   }
