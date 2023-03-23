@@ -1,9 +1,11 @@
 ---
+import "../../../styles/blogBody.scss";
 import { portableTextToHtml } from "astro-sanity";
 import BlogPostImage from "../../../components/blog/BlogPostImage.astro";
 import BlogPostTags from "../../../components/blog/BlogPostTags.astro";
 import FeatureBlock from "../../../components/blog/FeatureBlock.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
+import { sanityPortableText } from "../../../lib/portableText";
 
 import { getAllPosts } from "../../../lib/sanity";
 
@@ -26,12 +28,12 @@ const color = risoColorClasses[post.color];
 const features = post.features;
 const date = post.date.slice(0, 10);
 
-const customComponent = {
-  block: {
-    h2: (value) =>
-      `<h2 class="test text-lg font-semibold uppercase">${value.children}</h2>`,
-  },
-};
+// const customComponent = {
+//   block: {
+//     h2: (value) =>
+//       `<h2 class="test text-lg font-semibold uppercase">${value.children}</h2>`,
+//   },
+// };
 ---
 
 <MainLayout title={post.title}>
@@ -45,14 +47,21 @@ const customComponent = {
       {post.description}
     </p>
     <div class="mt-3">
-      {post.illustration && <BlogPostImage illustration={post.illustration} />}
+      {
+        post.illustration && (
+          <div class:list={["lg:float-right lg:max-w-xs lg:mr-4"]}>
+            <BlogPostImage illustration={post.illustration} />
+          </div>
+        )
+      }
+
       {features && <FeatureBlock features={post.features} />}
 
       {
         post.body && (
           <div
-            class="test"
-            set:html={portableTextToHtml(post.body, customComponent)}
+            class:list={["blog-page", "riso-" + post.color]}
+            set:html={sanityPortableText(post.body)}
           />
         )
       }
@@ -63,9 +72,3 @@ const customComponent = {
     </footer>
   </article>
 </MainLayout>
-
-<style>
-  p {
-    @apply text-riso-red;
-  }
-</style>

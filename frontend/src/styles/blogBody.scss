@@ -1,0 +1,41 @@
+.blog-page {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply uppercase font-semibold;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply text-lg;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  li li {
+    @apply ml-6 list-circle;
+  }
+}
+
+.riso-teal {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-riso-teal;
+  }
+  p,
+  ul,
+  ol,
+  blockquote {
+    @apply text-riso-teal-dark;
+  }
+}
