@@ -8,7 +8,12 @@ const { tags } = Astro.props;
   {
     tags.map((tag) => (
       <li>
-        <TagLink title={tag.title} slug={tag.slug.current} color={tag.color} />
+        <TagLink
+          title={tag.title}
+          slug={tag.slug.current}
+          path={"/blog/"}
+          color={tag.color}
+        />
       </li>
     ))
   }

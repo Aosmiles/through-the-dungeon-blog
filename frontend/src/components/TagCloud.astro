@@ -2,6 +2,7 @@
 import { getAllTags } from "../lib/sanity";
 import TagLink from "./TagLink.astro";
 
+const { path } = Astro.props;
 const tags = await getAllTags();
 ---
 
@@ -12,9 +13,9 @@ const tags = await getAllTags();
     <span class="tag-cloud-hide">→</span>
   </button>
   <div class="hidden tag-cloud-hide">
-    <ul class="flex mt-2 gap-1 flex-wrap">
-      <li class="shadow-rainbow mr-3">
-        <TagLink color={"red"} slug={"."} title={"All"} />
+    <ul class="flex mt-2 gap-2 flex-wrap">
+      <li class="shadow-rainbow mr-2">
+        <TagLink color={"red"} slug={"."} path={path} title={"All"} />
       </li>
       {
         tags.map((tag) => (
@@ -22,6 +23,7 @@ const tags = await getAllTags();
             <TagLink
               color={tag.color}
               slug={tag.slug.current}
+              path={path}
               title={tag.title}
             />
           </li>

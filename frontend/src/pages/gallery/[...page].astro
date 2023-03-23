@@ -19,9 +19,9 @@ export async function getStaticPaths({ paginate }) {
 
 const { page } = Astro.props;
 const title = "Gallery";
+const path = "/gallery/";
 ---
 
 <MainLayout title={title}>
-  <Gallery illustrations={page.data} />
-  <PaginationNav {page} />
+  <Gallery page={page} path={path} />
 </MainLayout>
