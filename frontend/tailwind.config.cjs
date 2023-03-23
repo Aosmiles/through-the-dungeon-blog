@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      listStyleType: {
+        circle: "circle",
+      },
       colors: {
         "riso-red": "#FF665E",
         "riso-blue": "#0078BF",

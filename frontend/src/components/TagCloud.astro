@@ -1,0 +1,38 @@
+---
+import { getAllTags } from "../lib/sanity";
+import TagLink from "./TagLink.astro";
+
+const tags = await getAllTags();
+---
+
+<div>
+  <button id="filter-tags" class="text-riso-red"
+    ><span class="underline">Filter By Tag</span>
+    <span class="hidden tag-cloud-hide">↓</span>
+    <span class="tag-cloud-hide">→</span>
+  </button>
+  <div class="hidden tag-cloud-hide">
+    <ul class="flex mt-2 gap-1 flex-wrap">
+      <li><TagLink color={"red"} slug={""} title={"All"} /></li>
+      {
+        tags.map((tag) => (
+          <li>
+            <TagLink
+              color={tag.color}
+              slug={tag.slug.current}
+              title={tag.title}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<script>
+  document.querySelector("#filter-tags").addEventListener("click", () => {
+    document.querySelectorAll(".tag-cloud-hide").forEach((element) => {
+      element.classList.toggle("hidden");
+    });
+  });
+</script>

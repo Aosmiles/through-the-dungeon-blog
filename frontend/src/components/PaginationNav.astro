@@ -2,11 +2,23 @@
 const { page } = Astro.props;
 const prevUrl = page.url.prev;
 const nextUrl = page.url.next;
-const currentPage = page.currentPage;
+const currentUrl = page.url.current;
 ---
 
-<div class="mb-10 mx-auto flex justify-between">
-  {prevUrl && <a href={prevUrl}>Previous Page</a>}
-  <a href="/blog"> Home</a>
-  {nextUrl && <a href={nextUrl}>Next Page</a>}
+<div class="text-riso-blue my-6 flex">
+  {
+    prevUrl && (
+      <a class="hover:underline py-1 pr-3" href={prevUrl}>
+        {"<< Previous"}
+      </a>
+    )
+  }
+
+  {
+    nextUrl && (
+      <a class="ml-auto py-1 pl-3  hover:underline" href={nextUrl}>
+        {"Next >>"}
+      </a>
+    )
+  }
 </div>
