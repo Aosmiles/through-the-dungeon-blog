@@ -13,7 +13,9 @@ const tags = await getAllTags();
   </button>
   <div class="hidden tag-cloud-hide">
     <ul class="flex mt-2 gap-1 flex-wrap">
-      <li><TagLink color={"red"} slug={"."} title={"All"} /></li>
+      <li class="shadow-rainbow mr-3">
+        <TagLink color={"red"} slug={"."} title={"All"} />
+      </li>
       {
         tags.map((tag) => (
           <li>
