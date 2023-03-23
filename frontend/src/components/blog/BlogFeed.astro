@@ -1,15 +1,22 @@
 ---
+import PaginationNav from "../../components/PaginationNav.astro";
+import TagCloud from "../../components/TagCloud.astro";
 import BlogPostCard from "./BlogPostCard.astro";
 
-const { posts } = Astro.props;
+const { page } = Astro.props;
+const posts = page.data;
 ---
 
-<ul class="flex flex-col gap-8">
-  {
-    posts.map((post) => (
-      <li>
-        <BlogPostCard post={post} />
-      </li>
-    ))
-  }
-</ul>
+<div class="max-w-3xl">
+  <TagCloud path="/blog/" />
+  <ul class="flex flex-col gap-8 mt-8">
+    {
+      posts.map((post) => (
+        <li>
+          <BlogPostCard post={post} />
+        </li>
+      ))
+    }
+  </ul>
+  <PaginationNav {page} />
+</div>

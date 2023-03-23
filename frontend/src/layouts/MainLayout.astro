@@ -26,6 +26,7 @@ const { title } = Astro.props;
     <script>
       import "../lib/photoSwipe";
       import "photoswipe/style.css";
+      import "photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css";
 
       document.querySelector("#hamburger").addEventListener("click", () => {
         document.querySelector("#nav-menu").classList.toggle("hidden");

@@ -1,16 +1,18 @@
 ---
 import { urlForImage } from "../../lib/sanityImageUrlBuilder";
 
+const width = 768;
+
 const { illustration } = Astro.props;
-const image = urlForImage(illustration.image).width(640).fit("max").url();
+const image = urlForImage(illustration.image).width(width).fit("max").url();
 ---
 
 <a
   class="ps-image"
   href={image}
   data-pswp-src={image}
-  data-pswp-width={640}
-  data-pswp-height={640 / illustration.size.aspectRatio}
+  data-pswp-width={width}
+  data-pswp-height={width / illustration.size.aspectRatio}
   target="_blank"
 >
   <img class="" src={image} alt="" />

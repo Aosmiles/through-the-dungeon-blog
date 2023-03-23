@@ -1,11 +1,11 @@
 ---
 import risoColorClasses from "../utility/risoColorClasses";
-const { color, slug, title } = Astro.props;
+const { color, slug, title, path } = Astro.props;
 ---
 
 <a
-  class:list={["block text-white text-sm px-3", risoColorClasses[color].bg]}
-  href={`/blog/${slug}`}
+  class:list={["block text-white px-3 py-1", risoColorClasses[color].bg]}
+  href={path + slug}
 >
   {title}
 </a>

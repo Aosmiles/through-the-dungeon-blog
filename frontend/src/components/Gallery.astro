@@ -1,10 +1,14 @@
 ---
 import GalleryImage from "./GalleryImage.astro";
+import PaginationNav from "./PaginationNav.astro";
+import TagCloud from "./TagCloud.astro";
 
-const { illustrations } = Astro.props;
+const { page, path } = Astro.props;
+const illustrations = page.data;
 ---
 
-<ul class="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gallery">
+<TagCloud path={path} />
+<ul class="columns-2 md:columns-3 lg:columns-4 gallery">
   {
     illustrations.map((i) => (
       <li class="mb-5">
@@ -13,3 +17,4 @@ const { illustrations } = Astro.props;
     ))
   }
 </ul>
+<PaginationNav page={page} />

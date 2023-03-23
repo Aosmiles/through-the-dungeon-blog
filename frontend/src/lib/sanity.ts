@@ -24,7 +24,9 @@ export async function getAllIllustrations() {
   if (allIllustrations) return allIllustrations;
   const query = groq`*[_type == "illustration"] {
   ...,
-  "size": image.asset->metadata.dimensions
+  "size": image.asset->metadata.dimensions,
+    tags[]->,
+    "tagSlugs":tags[]->slug.current
 }
 | order(_createdAt desc)`;
   allIllustrations = await useSanityClient().fetch(query);
