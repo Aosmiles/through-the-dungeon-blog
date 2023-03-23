@@ -2,6 +2,7 @@
 import BlogFeed from "../../../components/blog/BlogFeed.astro";
 import BlogPagination from "../../../components/blog/BlogPagination.astro";
 import PaginationNav from "../../../components/PaginationNav.astro";
+import TagCloud from "../../../components/TagCloud.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getAllPosts, getAllTags } from "../../../lib/sanity";
 
@@ -27,7 +28,7 @@ const title = params.tag;
 ---
 
 <MainLayout title={title}>
-  <h2>{params.tag}</h2>
+  <TagCloud />
   <BlogFeed posts={page.data} />
   <PaginationNav {page} />
 </MainLayout>
