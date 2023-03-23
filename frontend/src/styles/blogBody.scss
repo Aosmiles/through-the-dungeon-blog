@@ -1,4 +1,4 @@
-.blog-page {
+.blog-post {
   h1,
   h2,
   h3,
@@ -8,18 +8,31 @@
     @apply uppercase font-semibold;
   }
 
-  h1,
+  h1 {
+    @apply text-2xl;
+  }
   h2,
   h3 {
     @apply text-lg;
   }
 
-  ul {
-    @apply list-disc;
-  }
+  .styled-body {
+    a {
+      @apply text-riso-blue underline hover:text-riso-red;
+    }
 
-  li li {
-    @apply ml-6 list-circle;
+    ol,
+    ul {
+      @apply list-inside;
+    }
+
+    ul {
+      @apply list-disc;
+    }
+
+    li li {
+      @apply ml-6 list-circle;
+    }
   }
 }
 
@@ -38,4 +51,8 @@
   blockquote {
     @apply text-riso-teal-dark;
   }
+
+  // img {
+  //   @apply border-l-10 border-riso-teal;
+  // }
 }

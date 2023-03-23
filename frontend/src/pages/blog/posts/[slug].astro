@@ -1,6 +1,5 @@
 ---
 import "../../../styles/blogBody.scss";
-import { portableTextToHtml } from "astro-sanity";
 import BlogPostImage from "../../../components/blog/BlogPostImage.astro";
 import BlogPostTags from "../../../components/blog/BlogPostTags.astro";
 import FeatureBlock from "../../../components/blog/FeatureBlock.astro";
@@ -23,51 +22,46 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const { post } = Astro.props;
-const color = risoColorClasses[post.color];
 
 const features = post.features;
+const body = post.body;
+const hasFeatureOrBody = body || features ? true : false;
 const date = post.date.slice(0, 10);
-
-// const customComponent = {
-//   block: {
-//     h2: (value) =>
-//       `<h2 class="test text-lg font-semibold uppercase">${value.children}</h2>`,
-//   },
-// };
 ---
 
 <MainLayout title={post.title}>
-  <article class:list={["gallery", color.text]}>
-    <span class="text-xs">{date}</span>
+  <article class:list={["gallery blog-post", "riso-" + post.color]}>
+    <p class="text-xs">{date}</p>
 
-    <h1 class:list={["text-2xl font-semibold uppercase ", color.title]}>
+    <h1>
       {post.title}
     </h1>
-    <p class="">
+    <p>
       {post.description}
     </p>
-    <div class="mt-3">
+    <div class="mt-5">
       {
         post.illustration && (
-          <div class:list={["lg:float-right lg:max-w-xs lg:mr-4"]}>
+          <div
+            class:list={[
+              hasFeatureOrBody ? "lg:float-right lg:max-w-sm lg:ml-5" : null,
+            ]}
+          >
             <BlogPostImage illustration={post.illustration} />
           </div>
         )
       }
 
-      {features && <FeatureBlock features={post.features} />}
+      {features && <FeatureBlock features={features} />}
 
       {
-        post.body && (
-          <div
-            class:list={["blog-page", "riso-" + post.color]}
-            set:html={sanityPortableText(post.body)}
-          />
+        body && (
+          <div class="styled-body mt-5" set:html={sanityPortableText(body)} />
         )
       }
     </div>
 
-    <footer>
+    <footer class="pt-10 clear-right">
       <BlogPostTags tags={post.tags} />
     </footer>
   </article>
