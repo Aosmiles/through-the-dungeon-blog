@@ -1,5 +1,7 @@
 ---
 import { urlForImage } from "../lib/sanityImageUrlBuilder";
+import TagLink from "./TagLink.astro";
+import Tags from "./Tags.astro";
 
 const { illustration } = Astro.props;
 
@@ -14,12 +16,18 @@ const thumbnailUrl = urlForImage(img)
   .url();
 ---
 
-<a
-  href={imgUrl}
-  class="ps-image"
-  data-pswp-width={width}
-  data-pswp-height={height}
-  target="_blank"
->
-  <img class="mx-auto" src={thumbnailUrl} alt={illustration.alt} />
-</a>
+<div class="ps-image">
+  <a
+    href={imgUrl}
+    data-pswp-width={width}
+    data-pswp-height={height}
+    target="_blank"
+  >
+    <img class="mx-auto" src={thumbnailUrl} alt={illustration.alt} />
+  </a>
+  <div class="caption-content hidden">
+    <h1 class="uppercase text-lg">{illustration.title}</h1>
+    <p>{illustration.caption}</p>
+    <Tags tags={illustration.tags} path="/gallery/" />
+  </div>
+</div>

@@ -1,7 +1,7 @@
 ---
 import "../../../styles/blogBody.scss";
 import BlogPostImage from "../../../components/blog/BlogPostImage.astro";
-import BlogPostTags from "../../../components/blog/BlogPostTags.astro";
+
 import FeatureBlock from "../../../components/blog/FeatureBlock.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { sanityPortableText } from "../../../lib/portableText";
@@ -9,6 +9,7 @@ import { sanityPortableText } from "../../../lib/portableText";
 import { getAllPosts } from "../../../lib/sanity";
 
 import risoColorClasses from "../../../utility/risoColorClasses";
+import Tags from "../../../components/Tags.astro";
 
 export async function getStaticPaths() {
   const allPosts = await getAllPosts();
@@ -63,7 +64,7 @@ const date = post.date.slice(0, 10);
     </div>
 
     <footer class="pt-10 clear-right">
-      <BlogPostTags tags={post.tags} />
+      <Tags tags={post.tags} path="/blog/" />
     </footer>
   </article>
 </MainLayout>

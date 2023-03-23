@@ -1,17 +1,17 @@
 ---
-import TagLink from "../TagLink.astro";
+import TagLink from "./TagLink.astro";
 
-const { tags } = Astro.props;
+const { tags, path } = Astro.props;
 ---
 
-<ul class="mt-2 flex gap-2 flex-wrap">
+<ul class="flex gap-2 flex-wrap">
   {
     tags.map((tag) => (
       <li>
         <TagLink
           title={tag.title}
           slug={tag.slug.current}
-          path={"/blog/"}
+          path={path}
           color={tag.color}
         />
       </li>
