@@ -22,7 +22,5 @@ const title = "Blog";
 ---
 
 <MainLayout title={title}>
-  <TagCloud />
-  <BlogFeed posts={page.data} />
-  <PaginationNav {page} />
+  <BlogFeed page={page} />
 </MainLayout>
