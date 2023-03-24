@@ -7,7 +7,7 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import { getAllPosts, getAllTags } from "../../../lib/sanity";
 
 export async function getStaticPaths({ paginate }) {
-  const allTags = await getAllTags();
+  const allTags = await getAllTags("post");
   const allPosts = await getAllPosts();
   // For every tag, return a paginate() result.
   // Make sure that you pass `{params: {tag}}` to `paginate()`

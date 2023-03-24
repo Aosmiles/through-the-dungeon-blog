@@ -1,9 +1,7 @@
 ---
-import { getAllTags } from "../lib/sanity";
 import TagLink from "./TagLink.astro";
 
-const { path } = Astro.props;
-const tags = await getAllTags();
+const { path, tags } = Astro.props;
 ---
 
 <div>

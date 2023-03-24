@@ -2,7 +2,6 @@ import { useSanityClient, groq } from "astro-sanity";
 
 let allPosts;
 let allIllustrations;
-let allTags;
 
 export async function getAllPosts() {
   if (allPosts) return allPosts;
@@ -33,11 +32,10 @@ export async function getAllIllustrations() {
   return allIllustrations;
 }
 
-export async function getAllTags() {
-  if (allTags) return allTags;
-  const query = groq`*[_type == "tag"] 
+export async function getAllTags(type) {
+  const query = `*[_type == "tag" && count(*[ _type == "${type}" && ^._id in tags[]._ref ]) > 0] 
 | order(title asc)`;
-  allTags = await useSanityClient().fetch(query);
+  const allTags = await useSanityClient().fetch(query);
   return allTags;
 }
 
@@ -67,5 +65,7 @@ tags
     "allTags": array::unique([...illustration->tags[]->slug.current,...tags[]->slug.current])
 }
 | order(_createdAt desc)
+
+*[_type == "tag" && count(*[ _type == "illustration" && ^._id in tags[]._ref ]) > 0]
 
 */
