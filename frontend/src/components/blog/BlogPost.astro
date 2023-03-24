@@ -1,0 +1,40 @@
+---
+import { sanityPortableText } from "../../lib/portableText";
+import Tags from "../Tags.astro";
+import BlogPostImage from "./BlogPostImage.astro";
+import FeatureBlock from "./FeatureBlock.astro";
+
+const { post } = Astro.props;
+---
+
+<article
+  class:list={["max-w-3xl w-full gallery blog-post", "riso-" + post.color]}
+>
+  <p class="text-xs">{post.date.slice(0, 10)}</p>
+  <div>
+    {
+      post.illustration && (
+        <div>
+          <BlogPostImage illustration={post.illustration} />
+        </div>
+      )
+    }
+    <div>
+      <h1>
+        {post.title}
+      </h1>
+      <p>
+        {post.description}
+      </p>
+      {post.features && <FeatureBlock features={post.features} />}
+      {
+        post.body && (
+          <div class="styled-body" set:html={sanityPortableText(post.body)} />
+        )
+      }
+    </div>
+  </div>
+  <footer>
+    <Tags tags={post.tags} path="/blog/" />
+  </footer>
+</article>
