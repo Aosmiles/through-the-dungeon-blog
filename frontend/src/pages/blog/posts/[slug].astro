@@ -33,6 +33,20 @@ const date = post.date.slice(0, 10);
 <MainLayout title={post.title}>
   <article class:list={["gallery blog-post", "riso-" + post.color]}>
     <p class="text-xs">{date}</p>
+    {
+      post.illustration && (
+        <div
+          class:list={[
+            "mb-5 transition hover:shadow-md duration-200",
+            hasFeatureOrBody
+              ? "md:max-w-xs lg:float-right lg:max-w-sm lg:ml-5"
+              : null,
+          ]}
+        >
+          <BlogPostImage illustration={post.illustration} />
+        </div>
+      )
+    }
 
     <h1>
       {post.title}
@@ -40,29 +54,15 @@ const date = post.date.slice(0, 10);
     <p>
       {post.description}
     </p>
-    <div class="mt-5">
-      {
-        post.illustration && (
-          <div
-            class:list={[
-              "mb-5",
-              hasFeatureOrBody ? "lg:float-right lg:max-w-sm lg:ml-5" : null,
-            ]}
-          >
-            <BlogPostImage illustration={post.illustration} />
-          </div>
-        )
-      }
 
-      {features && <FeatureBlock features={features} />}
+    {features && <FeatureBlock features={features} />}
 
-      {
-        body && (
-          <div class="styled-body mt-5" set:html={sanityPortableText(body)} />
-        )
-      }
-    </div>
-
+    {
+      body && (
+        <div class="styled-body mt-5" set:html={sanityPortableText(body)} />
+      )
+    }
+    <!-- <div class:list={["mt-6 border-b-2", risoColorClasses[post.color].border]}> -->
     <footer class="pt-10 clear-right">
       <Tags tags={post.tags} path="/blog/" />
     </footer>
