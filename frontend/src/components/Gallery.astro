@@ -4,12 +4,12 @@ import GalleryImage from "./GalleryImage.astro";
 import PaginationNav from "./PaginationNav.astro";
 import TagCloud from "./TagCloud.astro";
 
-const { page, path } = Astro.props;
+const { page, path, tagTitle } = Astro.props;
 const illustrations = page.data;
 const tags = await getAllTags("illustration");
 ---
 
-<TagCloud path={path} tags={tags} />
+<TagCloud path={path} tags={tags} currentTag={tagTitle} />
 <ul class="columns-2 md:columns-3 lg:columns-4 gallery">
   {
     illustrations.map((i) => (

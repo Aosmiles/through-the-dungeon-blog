@@ -4,13 +4,13 @@ import TagCloud from "../../components/TagCloud.astro";
 import { getAllTags } from "../../lib/sanity";
 import BlogPostCard from "./BlogPostCard.astro";
 
-const { page } = Astro.props;
+const { page, tagTitle } = Astro.props;
 const posts = page.data;
 const tags = await getAllTags("post");
 ---
 
 <div class="max-w-3xl">
-  <TagCloud path="/blog/" tags={tags} />
+  <TagCloud path="/blog/" tags={tags} currentTag={tagTitle} />
   <ul class="flex flex-col gap-8 mt-8">
     {
       posts.map((post) => (
