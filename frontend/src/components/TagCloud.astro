@@ -6,7 +6,9 @@ const { path, tags, currentTag } = Astro.props;
 
 <div>
   <div class="flex">
-    <button id="filter-tags" class="text-riso-red text-xl md:text-base"
+    <button
+      id="filter-tags"
+      class="text-riso-blue hover:text-riso-red text-xl md:text-base"
       ><span class="underline">Tags</span>
       <span class="hidden tag-cloud-hide">→</span>
       <span class="tag-cloud-hide">↓</span>
@@ -15,7 +17,7 @@ const { path, tags, currentTag } = Astro.props;
   </div>
   <div class="hidden tag-cloud-hide">
     <ul class="flex mt-2 gap-2 flex-wrap">
-      <li class="shadow-rainbow mr-2">
+      <li>
         <TagLink color={"red"} slug={"."} path={path} title={"All"} />
       </li>
       {
