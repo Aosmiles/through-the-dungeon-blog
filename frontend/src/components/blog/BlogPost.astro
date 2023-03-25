@@ -18,6 +18,7 @@ const isHorizontalImage =
     class:list={["grid gap-10", isHorizontalImage ? null : "lg:grid-cols-1-2"]}
   >
     {
+      // todo: create vertical and horizontal image components or full blog layouts
       post.illustration && (
         <div>
           <BlogPostPicture illustration={post.illustration} />

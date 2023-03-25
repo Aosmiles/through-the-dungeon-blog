@@ -1,6 +1,5 @@
 ---
 import { urlForImage } from "../../lib/sanityImageUrlBuilder";
-import PictureThumbnail from "./PictureThumbnail.astro";
 
 const { illustration } = Astro.props;
 
@@ -10,31 +9,31 @@ const small = 400;
 const medium = 600;
 const large = 1000;
 
+const height = 400;
+
 const smallImage = urlForImage(illustration.image)
   .width(small)
+  .height(height)
   .fit("max")
   .auto("format")
   .url();
 const mediumImage = urlForImage(illustration.image)
   .width(medium)
+  .height(height)
   .fit("max")
   .auto("format")
   .url();
 const largeImage = urlForImage(illustration.image)
   .width(large)
+  .height(height)
   .fit("max")
   .auto("format")
   .url();
 ---
 
-<a
-  class="ps-image"
-  href={largeImage}
-  data-pswp-srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
-  data-pswp-width={large}
-  data-pswp-height={large / illustration.size.aspectRatio}
-  target="_blank"
->
-  <PictureThumbnail illustration={illustration} />
-  <span class="caption-content hidden"></span>
-</a>
+<img
+  src={largeImage}
+  srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
+  sizes="(min-width: 1024px) 768px,(min-width: 768px) 592px, (min-width: 640px) 368px, 368px"
+  alt={illustration.alt}
+/>
