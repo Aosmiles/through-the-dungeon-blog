@@ -1,0 +1,50 @@
+---
+import { urlForImage } from "../../lib/sanityImageUrlBuilder";
+
+const { illustration } = Astro.props;
+
+const xSmall = 300;
+const small = 600;
+const medium = 900;
+const large = 1200;
+
+const xSmallImage = urlForImage(illustration.image)
+  .width(xSmall)
+  .fit("max")
+  .auto("format")
+  .flipVertical()
+  .url();
+const smallImage = urlForImage(illustration.image)
+  .width(small)
+  .fit("max")
+  .auto("format")
+  .url();
+const mediumImage = urlForImage(illustration.image)
+  .width(medium)
+  .fit("max")
+  .auto("format")
+  .blur(50)
+  .url();
+const largeImage = urlForImage(illustration.image)
+  .width(large)
+  .fit("max")
+  .auto("format")
+  .saturation(-100)
+  .url();
+---
+
+<a
+  class="ps-image"
+  href={largeImage}
+  data-pswp-srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w, ${xSmallImage} ${xSmall}w`}
+  data-pswp-width={large}
+  data-pswp-height={large / illustration.size.aspectRatio}
+  target="_blank"
+>
+  <img
+    src={largeImage}
+    srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w,  ${smallImage} ${small}w, ${xSmallImage} ${xSmall}w`}
+    sizes={`(min-width: 1024px) 768px, (min-width: 768px) 592px, (min-width: 640px) 368px`}
+    alt={illustration.alt}
+  />
+</a>

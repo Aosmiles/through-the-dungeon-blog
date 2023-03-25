@@ -2,6 +2,7 @@
 import { sanityPortableText } from "../../lib/portableText";
 import Tags from "../Tags.astro";
 import BlogPostImage from "./BlogPostImage.astro";
+import BlogPostPicture from "./BlogPostPicture.astro";
 import FeatureBlock from "./FeatureBlock.astro";
 
 const { post } = Astro.props;
@@ -15,7 +16,7 @@ const { post } = Astro.props;
     {
       post.illustration && (
         <div>
-          <BlogPostImage illustration={post.illustration} />
+          <BlogPostPicture illustration={post.illustration} />
         </div>
       )
     }
