@@ -29,6 +29,10 @@ module.exports = {
       fontFamily: {
         display: ["Jost", "sans-serif"],
       },
+      gridTemplateColumns: {
+        "1-2": "minmax(0, 1fr) minmax(0, 2fr)",
+        "2-1": "minmax(0, 2fr) minmax(0, 1fr)",
+      },
     },
   },
   plugins: [],

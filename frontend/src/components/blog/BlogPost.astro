@@ -6,13 +6,17 @@ import BlogPostPicture from "./BlogPostPicture.astro";
 import FeatureBlock from "./FeatureBlock.astro";
 
 const { post } = Astro.props;
+
+const isHorizontalImage =
+  post.illustration &&
+  post.illustration.size.width > post.illustration.size.height;
 ---
 
-<article
-  class:list={["max-w-3xl w-full gallery blog-post", "riso-" + post.color]}
->
+<article class:list={["w-full gallery blog-post", "riso-" + post.color]}>
   <p class="text-xs">{post.date.slice(0, 10)}</p>
-  <div>
+  <div
+    class:list={["grid gap-10", isHorizontalImage ? null : "lg:grid-cols-1-2"]}
+  >
     {
       post.illustration && (
         <div>
@@ -20,7 +24,8 @@ const { post } = Astro.props;
         </div>
       )
     }
-    <div>
+
+    <div class="flex flex-col gap-5">
       <h1>
         {post.title}
       </h1>
@@ -34,8 +39,9 @@ const { post } = Astro.props;
         )
       }
     </div>
+
+    <footer class="col-span-2">
+      <Tags tags={post.tags} path="/blog/" />
+    </footer>
   </div>
-  <footer>
-    <Tags tags={post.tags} path="/blog/" />
-  </footer>
 </article>
