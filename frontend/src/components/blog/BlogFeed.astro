@@ -20,5 +20,5 @@ const tags = await getAllTags("post");
       ))
     }
   </ul>
-  <PaginationNav {page} />
+  <PaginationNav nextUrl={page.url.next} prevUrl={page.url.prev} />
 </div>

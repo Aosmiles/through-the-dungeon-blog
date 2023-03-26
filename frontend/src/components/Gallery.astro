@@ -19,4 +19,4 @@ const tags = await getAllTags("illustration");
     ))
   }
 </ul>
-<PaginationNav page={page} />
+<PaginationNav nextUrl={page.url.next} prevUrl={page.url.prev} />

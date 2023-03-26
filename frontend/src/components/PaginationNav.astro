@@ -1,8 +1,5 @@
 ---
-const { page } = Astro.props;
-const prevUrl = page.url.prev;
-const nextUrl = page.url.next;
-const currentUrl = page.url.current;
+const { nextUrl, prevUrl } = Astro.props;
 ---
 
 <div class="w-full text-riso-blue my-6 flex">
