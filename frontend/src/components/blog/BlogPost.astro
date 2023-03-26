@@ -2,31 +2,35 @@
 import { sanityPortableText } from "../../lib/portableText";
 import Tags from "../Tags.astro";
 import BlogPostImage from "./BlogPostImage.astro";
-import BlogPostPicture from "./BlogPostPicture.astro";
 import FeatureBlock from "./FeatureBlock.astro";
 
 const { post } = Astro.props;
 
-const isHorizontalImage =
-  post.illustration &&
-  post.illustration.size.width > post.illustration.size.height;
+const hasFeatureOrBody = Boolean(post.feature || post.body);
+const lgLayoutImageSize = hasFeatureOrBody ? 300 : 600;
 ---
 
-<article class:list={["w-full gallery blog-post", "riso-" + post.color]}>
+<article class:list={["mt-5 gallery blog-post", "riso-" + post.color]}>
   <p class="text-xs">{post.date.slice(0, 10)}</p>
   <div
-    class:list={["grid gap-10", isHorizontalImage ? null : "lg:grid-cols-1-2"]}
+    class:list={[
+      "mt-1 grid gap-12 md:grid-cols-2-1",
+      hasFeatureOrBody ? "lg:grid-cols-1-2" : "lg:grid-col-2",
+    ]}
   >
     {
       // todo: create vertical and horizontal image components or full blog layouts
       post.illustration && (
-        <div>
-          <BlogPostPicture illustration={post.illustration} />
+        <div class="">
+          <BlogPostImage
+            illustration={post.illustration}
+            thumbSizes={`(min-width: 1024px) ${lgLayoutImageSize}px,(min-width: 768px) 370px, 370px`}
+          />
         </div>
       )
     }
 
-    <div class="flex flex-col gap-5">
+    <div class="space-y-5 md:col-start-1 lg:col-auto">
       <h1>
         {post.title}
       </h1>
@@ -41,7 +45,9 @@ const isHorizontalImage =
       }
     </div>
 
-    <footer class="col-span-2">
+    <footer
+      class="col-span-full md:col-start-2 md:row-start-1 lg:row-auto lg:col-span-full"
+    >
       <Tags tags={post.tags} path="/blog/" />
     </footer>
   </div>

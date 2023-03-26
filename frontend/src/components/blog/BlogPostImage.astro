@@ -1,19 +1,42 @@
 ---
 import { urlForImage } from "../../lib/sanityImageUrlBuilder";
 
-const width = 768;
+const { illustration, thumbSizes } = Astro.props;
 
-const { illustration } = Astro.props;
-const image = urlForImage(illustration.image).width(width).fit("max").url();
+const small = 370;
+const medium = 600;
+const large = 900;
+
+const smallImage = urlForImage(illustration.image)
+  .width(small)
+  .fit("max")
+  .auto("format")
+  .url();
+const mediumImage = urlForImage(illustration.image)
+  .width(medium)
+  .fit("max")
+  .auto("format")
+  .url();
+const largeImage = urlForImage(illustration.image)
+  .width(large)
+  .fit("max")
+  .auto("format")
+  .url();
 ---
 
 <a
   class="ps-image"
-  href={image}
-  data-pswp-src={image}
-  data-pswp-width={width}
-  data-pswp-height={width / illustration.size.aspectRatio}
+  href={largeImage}
+  data-pswp-srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
+  data-pswp-width={large}
+  data-pswp-height={large / illustration.size.aspectRatio}
   target="_blank"
 >
-  <img src={image} alt="" />
+  <img
+    src={largeImage}
+    srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
+    sizes={thumbSizes}
+    alt={illustration.alt}
+  />
+  <span class="caption-content hidden"></span>
 </a>
