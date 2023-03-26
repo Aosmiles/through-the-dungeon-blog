@@ -6,7 +6,7 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import { getAllIllustrations, getAllTags } from "../../../lib/sanity";
 
 export async function getStaticPaths({ paginate }) {
-  const allTags = await getAllTags();
+  const allTags = await getAllTags("illustration");
   const allIllustrations = await getAllIllustrations();
   // For every tag, return a paginate() result.
   // Make sure that you pass `{params: {tag}}` to `paginate()`
@@ -17,16 +17,17 @@ export async function getStaticPaths({ paginate }) {
     });
     return paginate(filteredIllustrations, {
       params: { tag: tag.slug.current },
+      props: { tag: tag },
       pageSize: 30,
     });
   });
 }
-const { page } = Astro.props;
+const { page, tag } = Astro.props;
 const params = Astro.params;
-const title = params.tag;
+
 const path = "/gallery/";
 ---
 
-<MainLayout title={title}>
-  <Gallery page={page} path={path} />
+<MainLayout title={tag.title}>
+  <Gallery page={page} path={path} tagTitle={tag.title} />
 </MainLayout>

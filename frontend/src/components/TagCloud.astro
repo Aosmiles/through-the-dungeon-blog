@@ -1,20 +1,23 @@
 ---
-import { getAllTags } from "../lib/sanity";
 import TagLink from "./TagLink.astro";
 
-const { path } = Astro.props;
-const tags = await getAllTags();
+const { path, tags, currentTag } = Astro.props;
 ---
 
-<div>
-  <button id="filter-tags" class="text-riso-red text-xl md:text-base"
-    ><span class="underline">Filter By Tag</span>
-    <span class="hidden tag-cloud-hide">↓</span>
-    <span class="tag-cloud-hide">→</span>
-  </button>
+<div class="w-full my-5">
+  <div class="flex">
+    <button
+      id="filter-tags"
+      class="text-riso-blue hover:text-riso-red text-xl md:text-base"
+      ><span class="underline">Tags</span>
+      <span class="hidden tag-cloud-hide">→</span>
+      <span class="tag-cloud-hide">↓</span>
+    </button>
+    <h2 class="text-riso-red ml-auto">{currentTag}</h2>
+  </div>
   <div class="hidden tag-cloud-hide">
     <ul class="flex mt-2 gap-2 flex-wrap">
-      <li class="shadow-rainbow mr-2">
+      <li>
         <TagLink color={"red"} slug={"."} path={path} title={"All"} />
       </li>
       {

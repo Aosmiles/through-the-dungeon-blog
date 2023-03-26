@@ -29,8 +29,9 @@ module.exports = {
       fontFamily: {
         display: ["Jost", "sans-serif"],
       },
-      boxShadow: {
-        rainbow: "3px 0 0 0 #0078BF, 6px 0 0 0 #FFE800, 9px 0 0 0 #FF665E",
+      gridTemplateColumns: {
+        "1-2": "minmax(0, 1fr) minmax(0, 2fr)",
+        "2-1": "minmax(0, 2fr) minmax(0, 1fr)",
       },
     },
   },

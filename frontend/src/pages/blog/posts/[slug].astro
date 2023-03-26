@@ -1,15 +1,8 @@
 ---
 import "../../../styles/blogBody.scss";
-import BlogPostImage from "../../../components/blog/BlogPostImage.astro";
-
-import FeatureBlock from "../../../components/blog/FeatureBlock.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
-import { sanityPortableText } from "../../../lib/portableText";
-
 import { getAllPosts } from "../../../lib/sanity";
-
-import risoColorClasses from "../../../utility/risoColorClasses";
-import Tags from "../../../components/Tags.astro";
+import BlogPost from "../../../components/blog/BlogPost.astro";
 
 export async function getStaticPaths() {
   const allPosts = await getAllPosts();
@@ -21,50 +14,9 @@ export async function getStaticPaths() {
   });
 }
 
-const { slug } = Astro.params;
 const { post } = Astro.props;
-
-const features = post.features;
-const body = post.body;
-const hasFeatureOrBody = body || features ? true : false;
-const date = post.date.slice(0, 10);
 ---
 
 <MainLayout title={post.title}>
-  <article class:list={["gallery blog-post", "riso-" + post.color]}>
-    <p class="text-xs">{date}</p>
-
-    <h1>
-      {post.title}
-    </h1>
-    <p>
-      {post.description}
-    </p>
-    <div class="mt-5">
-      {
-        post.illustration && (
-          <div
-            class:list={[
-              "mb-5",
-              hasFeatureOrBody ? "lg:float-right lg:max-w-sm lg:ml-5" : null,
-            ]}
-          >
-            <BlogPostImage illustration={post.illustration} />
-          </div>
-        )
-      }
-
-      {features && <FeatureBlock features={features} />}
-
-      {
-        body && (
-          <div class="styled-body mt-5" set:html={sanityPortableText(body)} />
-        )
-      }
-    </div>
-
-    <footer class="pt-10 clear-right">
-      <Tags tags={post.tags} path="/blog/" />
-    </footer>
-  </article>
+  <BlogPost post={post} />
 </MainLayout>

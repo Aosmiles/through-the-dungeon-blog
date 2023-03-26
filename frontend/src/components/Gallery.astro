@@ -1,17 +1,19 @@
 ---
+import { getAllTags } from "../lib/sanity";
 import GalleryImage from "./GalleryImage.astro";
 import PaginationNav from "./PaginationNav.astro";
 import TagCloud from "./TagCloud.astro";
 
-const { page, path } = Astro.props;
+const { page, path, tagTitle } = Astro.props;
 const illustrations = page.data;
+const tags = await getAllTags("illustration");
 ---
 
-<TagCloud path={path} />
+<TagCloud path={path} tags={tags} currentTag={tagTitle} />
 <ul class="columns-2 md:columns-3 lg:columns-4 gallery">
   {
     illustrations.map((i) => (
-      <li class="mb-5">
+      <li class="mb-5 transition duration-100 hover:-translate-y-1">
         <GalleryImage illustration={i} />
       </li>
     ))

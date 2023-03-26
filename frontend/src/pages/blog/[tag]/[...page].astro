@@ -1,13 +1,10 @@
 ---
 import BlogFeed from "../../../components/blog/BlogFeed.astro";
-import BlogPagination from "../../../components/blog/BlogPagination.astro";
-import PaginationNav from "../../../components/PaginationNav.astro";
-import TagCloud from "../../../components/TagCloud.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getAllPosts, getAllTags } from "../../../lib/sanity";
 
 export async function getStaticPaths({ paginate }) {
-  const allTags = await getAllTags();
+  const allTags = await getAllTags("post");
   const allPosts = await getAllPosts();
   // For every tag, return a paginate() result.
   // Make sure that you pass `{params: {tag}}` to `paginate()`
@@ -18,15 +15,15 @@ export async function getStaticPaths({ paginate }) {
     });
     return paginate(filteredPosts, {
       params: { tag: tag.slug.current },
-      pageSize: 3,
+      props: { tag: tag },
+      pageSize: 5,
     });
   });
 }
-const { page } = Astro.props;
+const { page, tag } = Astro.props;
 const params = Astro.params;
-const title = params.tag;
 ---
 
-<MainLayout title={title}>
-  <BlogFeed page={page} />
+<MainLayout title={tag.title}>
+  <BlogFeed page={page} tagTitle={tag.title} />
 </MainLayout>
