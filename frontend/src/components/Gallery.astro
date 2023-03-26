@@ -10,13 +10,15 @@ const tags = await getAllTags("illustration");
 ---
 
 <TagCloud path={path} tags={tags} currentTag={tagTitle} />
-<ul class="columns-2 md:columns-3 lg:columns-4 gallery">
+<ul class="gallery masonry relative w-full">
   {
     illustrations.map((i) => (
-      <li class="mb-5 transition duration-100 hover:-translate-y-1">
+      <li class="absolute transition duration-250">
         <GalleryImage illustration={i} />
       </li>
     ))
   }
 </ul>
 <PaginationNav nextUrl={page.url.next} prevUrl={page.url.prev} />
+
+<script src="../lib/masonry"></script>

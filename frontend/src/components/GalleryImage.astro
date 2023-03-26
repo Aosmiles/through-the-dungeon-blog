@@ -16,14 +16,20 @@ const thumbnailUrl = urlForImage(img)
   .url();
 ---
 
-<div class="ps-image">
+<div class="ps-image transition duration-100 hover:-translate-y-1">
   <a
     href={imgUrl}
     data-pswp-width={width}
     data-pswp-height={height}
     target="_blank"
   >
-    <img class="mx-auto" src={thumbnailUrl} alt={illustration.alt} />
+    <img
+      class="mx-auto"
+      src={thumbnailUrl}
+      alt={illustration.alt}
+      width={width}
+      height={height}
+    />
   </a>
   <div class="caption-content hidden">
     <h1 class="uppercase text-lg">{illustration.title}</h1>
