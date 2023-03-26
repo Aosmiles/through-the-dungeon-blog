@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 const { post, next, prev } = Astro.props;
 
 function getUrl(page) {
-  if (page) return "/blog/post/" + page.slug.current;
+  if (page) return "/blog/posts/" + page.slug.current;
 }
 
 const nextUrl = getUrl(next);
@@ -31,5 +31,5 @@ const prevUrl = getUrl(prev);
 
 <MainLayout title={post.title}>
   <BlogPost post={post} />
-  <!-- make blog post nav -->
+  <PaginationNav nextUrl={nextUrl} prevUrl={prevUrl} />
 </MainLayout>
