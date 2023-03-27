@@ -8,6 +8,8 @@ const { illustration } = Astro.props;
 const img = illustration.image;
 const width = 800;
 const height = width / illustration.size.aspectRatio;
+const thumbWidth = 400;
+const thumbHeight = thumbWidth / illustration.size.aspectRatio;
 const imgUrl = urlForImage(img).width(width).fit("max").auto("format").url();
 const thumbnailUrl = urlForImage(img)
   .width(400)
@@ -27,8 +29,8 @@ const thumbnailUrl = urlForImage(img)
       class="mx-auto"
       src={thumbnailUrl}
       alt={illustration.alt}
-      width={width}
-      height={height}
+      width={thumbWidth}
+      height={thumbHeight}
     />
   </a>
   <div class="caption-content hidden">
