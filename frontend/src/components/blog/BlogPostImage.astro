@@ -36,6 +36,8 @@ const largeImage = urlForImage(illustration.image)
     src={largeImage}
     srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
     sizes={thumbSizes}
+    width={large}
+    height={large / illustration.size.aspectRatio}
     alt={illustration.alt}
   />
   <span class="caption-content hidden"></span>
