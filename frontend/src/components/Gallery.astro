@@ -10,15 +10,29 @@ const tags = await getAllTags("illustration");
 ---
 
 <TagCloud path={path} tags={tags} currentTag={tagTitle} />
-<ul class="gallery masonry relative w-full">
+<ul class="grid gallery masonry w-full">
   {
     illustrations.map((i) => (
-      <li class="absolute transition duration-250 animate-fade-in">
+      <li class=" hidden masonry-item transition duration-250 animate-fade-in max-w-full h-auto">
         <GalleryImage illustration={i} />
       </li>
     ))
   }
 </ul>
+<noscript>
+  <ul class="grid md:grid-cols-3 lg:grid-cols-4 gap-6 gallery masonry w-full">
+    {
+      illustrations.map((i) => (
+        <li class="masonry-item transition duration-250 animate-fade-in max-w-full h-auto bg-riso-red text-white">
+          <GalleryImage illustration={i} />
+          <h2 class="uppercase text-sm md:font-semibold md:text-xl pl-3 py-3">
+            {i.title}
+          </h2>
+        </li>
+      ))
+    }
+  </ul>
+</noscript>
 <PaginationNav nextUrl={page.url.next} prevUrl={page.url.prev} />
 
 <script src="../lib/masonry"></script>
