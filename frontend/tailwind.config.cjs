@@ -33,6 +33,12 @@ module.exports = {
         "1-2": "minmax(0, 1fr) minmax(0, 2fr)",
         "2-1": "minmax(0, 2fr) minmax(0, 1fr)",
       },
+      animation: {
+        "fade-in": "fadeIn 1s ease-in-out",
+      },
+      keyframes: {
+        fadeIn: { "0%": { opacity: 0 }, "100%": { opacity: 1 } },
+      },
     },
   },
   plugins: [],

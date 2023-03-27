@@ -13,7 +13,7 @@ const tags = await getAllTags("illustration");
 <ul class="gallery masonry relative w-full">
   {
     illustrations.map((i) => (
-      <li class="absolute transition duration-250">
+      <li class="absolute transition duration-250 animate-fade-in">
         <GalleryImage illustration={i} />
       </li>
     ))
