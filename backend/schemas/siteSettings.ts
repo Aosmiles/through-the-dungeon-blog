@@ -12,7 +12,7 @@ export default defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Site Description',
+      title: 'Meta Description',
       type: 'text',
     }),
     defineField({
@@ -24,6 +24,19 @@ export default defineType({
       name: 'ogImage',
       title: 'Open Graph Image',
       type: 'image',
+    }),
+    defineField({
+      name: 'aboutMe',
+      title: 'About me',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+        },
+        {
+          type: 'image',
+        },
+      ],
     }),
   ],
 })
