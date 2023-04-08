@@ -1,8 +1,10 @@
 import {defineField, defineType} from 'sanity'
+import {ImagesIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'illustration',
-  title: 'Illustration',
+  title: 'Illustrations',
+  icon: ImagesIcon,
   type: 'document',
   fields: [
     defineField({
