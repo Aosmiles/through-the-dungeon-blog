@@ -2,10 +2,18 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import { getSiteSettings } from "../lib/sanity";
 import { sanityPortableText } from "../lib/portableText";
+import { urlForImage } from "../lib/sanityImageUrlBuilder";
 const siteSettings = await getSiteSettings();
+const aboutImage = urlForImage(siteSettings.aboutMeImage.image)
+  .width(400)
+  .url();
 const title = "About";
 ---
 
 <MainLayout title={title}>
-  <div set:html={sanityPortableText(siteSettings.aboutMe)} />
+  <img src={aboutImage} alt="" />
+  <div
+    class="text-riso-purple"
+    set:html={sanityPortableText(siteSettings.aboutMe)}
+  />
 </MainLayout>
