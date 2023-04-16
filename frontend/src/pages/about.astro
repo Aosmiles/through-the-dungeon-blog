@@ -1,6 +1,11 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { getSiteSettings } from "../lib/sanity";
+import { sanityPortableText } from "../lib/portableText";
+const siteSettings = await getSiteSettings();
 const title = "About";
 ---
 
-<MainLayout title={title} />
+<MainLayout title={title}>
+  <div set:html={sanityPortableText(siteSettings.aboutMe)} />
+</MainLayout>
