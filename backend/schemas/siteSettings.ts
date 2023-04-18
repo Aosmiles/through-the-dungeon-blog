@@ -38,5 +38,11 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'aboutMeImage',
+      title: 'About Me Image',
+      type: 'reference',
+      to: [{type: 'illustration'}],
+    }),
   ],
 })
