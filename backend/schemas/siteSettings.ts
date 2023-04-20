@@ -26,6 +26,12 @@ export default defineType({
       type: 'image',
     }),
     defineField({
+      name: 'pinnedPost',
+      title: 'Pinned Post',
+      type: 'reference',
+      to: [{type: 'post'}],
+    }),
+    defineField({
       name: 'aboutMe',
       title: 'About me',
       type: 'array',
