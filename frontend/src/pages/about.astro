@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import { getSiteSettings } from "../lib/sanity";
 import { sanityPortableText } from "../lib/portableText";
 import { urlForImage } from "../lib/sanityImageUrlBuilder";
+import SocialsLink from "../components/socialsLink.astro";
 const siteSettings = await getSiteSettings();
 const socials = siteSettings.socials;
 const aboutImage = urlForImage(siteSettings.aboutMeImage.image).url();
@@ -15,6 +16,18 @@ const title = "About";
     <div class="text-riso-green">
       <h2 class="uppercase text-xl font-semibold">About Me</h2>
       <div class="mt-2" set:html={sanityPortableText(siteSettings.aboutMe)} />
+    </div>
+    <div class="space-y-3">
+      {
+        socials &&
+          socials.map((social) => (
+            <SocialsLink
+              url={social.url}
+              site={social.site}
+              screenName={social.screenName}
+            />
+          ))
+      }
     </div>
   </div>
 </MainLayout>

@@ -51,5 +51,11 @@ export default defineType({
       type: 'reference',
       to: [{type: 'illustration'}],
     }),
+    defineField({
+      name: 'socials',
+      title: 'Social Links',
+      type: 'array',
+      of: [{type: 'socialLink'}],
+    }),
   ],
 })
