@@ -4,14 +4,13 @@ import { getSiteSettings } from "../lib/sanity";
 import { sanityPortableText } from "../lib/portableText";
 import { urlForImage } from "../lib/sanityImageUrlBuilder";
 const siteSettings = await getSiteSettings();
-const aboutImage = urlForImage(siteSettings.aboutMeImage.image)
-  .width(400)
-  .url();
+const socials = siteSettings.socials;
+const aboutImage = urlForImage(siteSettings.aboutMeImage.image).url();
 const title = "About";
 ---
 
 <MainLayout title={title}>
-  <div class="mt-6 grid md:grid-cols-1-2 gap-12">
+  <div class="max-w-lg mt-6 space-y-5">
     <img src={aboutImage} alt="" />
     <div class="text-riso-green">
       <h2 class="uppercase text-xl font-semibold">About Me</h2>
