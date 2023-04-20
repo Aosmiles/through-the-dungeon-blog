@@ -1,0 +1,13 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { getSiteSettings } from "../lib/sanity";
+import { urlForImage } from "../lib/sanityImageUrlBuilder";
+const title = "Through The Dungeon Home";
+const siteSettings = await getSiteSettings();
+const pinnedPost = siteSettings.pinnedPost;
+const imageUrl = urlForImage(pinnedPost.image).height(500).url();
+---
+
+<MainLayout title={title}>
+  <img src={imageUrl} alt="" />
+</MainLayout>

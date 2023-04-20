@@ -1,8 +1,10 @@
 import {defineField, defineType} from 'sanity'
+import {ImagesIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'illustration',
-  title: 'Illustration',
+  title: 'Illustrations',
+  icon: ImagesIcon,
   type: 'document',
   fields: [
     defineField({
@@ -46,6 +48,13 @@ export default defineType({
         },
       ],
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      title: 'Include in gallery',
+      name: 'inGallery',
+      type: 'boolean',
+      initialValue: true,
+      validation: (rule) => rule.required(),
     }),
   ],
 })

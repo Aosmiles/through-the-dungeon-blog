@@ -1,0 +1,19 @@
+---
+interface Props {
+  url: "string";
+  site: "string";
+  screenName?: "string";
+}
+const { url, site, screenName } = Astro.props;
+---
+
+<div>
+  <a
+    class="text-riso-red text-lg hover:text-riso-blue hover:underline"
+    href={url}
+    target="_blank"
+  >
+    {site}
+    {screenName && <span>- {screenName}</span>}
+  </a>
+</div>

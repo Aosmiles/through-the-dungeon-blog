@@ -40,7 +40,14 @@ export async function getAllTags(type) {
 }
 
 export async function getSiteSettings() {
-  const query = groq`*[_type == "siteSettings" && _id == "siteSettings"][0]`;
+  const query = groq`*[_type == "siteSettings" && _id == "siteSettings"][0]{
+    ...,
+    aboutMeImage->,
+    pinnedPost->{
+      "image":illustration->image,
+      "slug":slug.current
+    }
+  }`;
   const siteSettings = await useSanityClient().fetch(query);
   return siteSettings;
 }

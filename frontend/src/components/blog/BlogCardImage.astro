@@ -33,13 +33,13 @@ const largeImage = urlForImage(illustration.image)
 <img
   class:list={[
     "border-l-16",
-    "h-36 md:h-56 lg:h-72",
+    "h-36 md:h-56 lg:h-72 object-cover",
     borderColor.border,
     borderColor.bg,
   ]}
   src={largeImage}
   srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
-  sizes="(min-width: 1024px) 770px,(min-width: 768px) 600px, 370px"
+  sizes="(min-width: 1024px) 768px,(min-width: 768px) 592px, 368px"
   width={large}
   height={largeHeight}
   alt={illustration.alt}
