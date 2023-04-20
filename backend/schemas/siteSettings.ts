@@ -44,11 +44,18 @@ export default defineType({
         },
       ],
     }),
+
     defineField({
       name: 'aboutMeImage',
       title: 'About Me Image',
       type: 'reference',
       to: [{type: 'illustration'}],
+    }),
+    defineField({
+      name: 'socials',
+      title: 'Social Links',
+      type: 'array',
+      of: [{type: 'socialLink'}],
     }),
   ],
 })
