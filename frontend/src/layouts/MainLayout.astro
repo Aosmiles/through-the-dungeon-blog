@@ -1,12 +1,36 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { getSiteSettings } from "../lib/sanity";
+
+export interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+const siteSettings = await getSiteSettings();
+const fullTitle = `${title} - ${siteSettings.title}`;
 ---
 
-<html class="font-display" lang="en">
-  <BaseHead />
-  <body class="container mx-auto max-w-lg">
-    <NavBar />
-    <slot />
+<html class="" lang="en">
+  <BaseHead title={fullTitle} />
+  <body class="font-display">
+    <div
+      class="container mx-auto flex flex-col items-center min-h-screen px-10 max-w-md md:max-w-2xl lg:max-w-5xl"
+    >
+      <Header />
+      <slot />
+      <Footer />
+    </div>
+
+    <script>
+      import "../lib/photoSwipe";
+      import "photoswipe/style.css";
+      import "photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css";
+
+      document.querySelector("#hamburger").addEventListener("click", () => {
+        document.querySelector("#nav-menu").classList.toggle("hidden");
+      });
+    </script>
   </body>
 </html>

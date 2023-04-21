@@ -1,0 +1,14 @@
+---
+const { features } = Astro.props;
+---
+
+<ul class="space-y-1">
+  {
+    features.map((feat) => (
+      <li>
+        <h2 class="text-lg font-semibold uppercase inline">{feat.title}:</h2>
+        <p class="inline">{feat.text}</p>
+      </li>
+    ))
+  }
+</ul>

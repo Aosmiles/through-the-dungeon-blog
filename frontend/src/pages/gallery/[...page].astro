@@ -1,0 +1,24 @@
+---
+import Gallery from "../../components/Gallery.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllIllustrations } from "../../lib/sanity";
+
+export async function getStaticPaths({ paginate }) {
+  const allIllustrations = await getAllIllustrations();
+
+  allIllustrations.map((illustration) => {
+    return {
+      props: { illustration },
+    };
+  });
+  return paginate(allIllustrations, { pageSize: 25 });
+}
+
+const { page } = Astro.props;
+const title = "Gallery";
+const path = "/gallery/";
+---
+
+<MainLayout title={title}>
+  <Gallery page={page} path={path} tagTitle="All" />
+</MainLayout>

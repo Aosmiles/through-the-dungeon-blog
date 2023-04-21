@@ -1,0 +1,44 @@
+---
+import { urlForImage } from "../../lib/sanityImageUrlBuilder";
+
+const { illustration, thumbSizes } = Astro.props;
+
+const small = 370;
+const medium = 600;
+const large = 900;
+
+const smallImage = urlForImage(illustration.image)
+  .width(small)
+  .fit("max")
+  .auto("format")
+  .url();
+const mediumImage = urlForImage(illustration.image)
+  .width(medium)
+  .fit("max")
+  .auto("format")
+  .url();
+const largeImage = urlForImage(illustration.image)
+  .width(large)
+  .fit("max")
+  .auto("format")
+  .url();
+---
+
+<a
+  class="ps-image"
+  href={largeImage}
+  data-pswp-srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
+  data-pswp-width={large}
+  data-pswp-height={large / illustration.size.aspectRatio}
+  target="_blank"
+>
+  <img
+    src={largeImage}
+    srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
+    sizes={thumbSizes}
+    width={large}
+    height={large / illustration.size.aspectRatio}
+    alt={illustration.alt}
+  />
+  <span class="caption-content hidden"></span>
+</a>

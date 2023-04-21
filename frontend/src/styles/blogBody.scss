@@ -1,0 +1,178 @@
+.blog-post {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply uppercase font-semibold;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+  h2,
+  h3 {
+    @apply text-lg;
+  }
+
+  .styled-body {
+    a {
+      @apply text-riso-blue underline hover:text-riso-red;
+    }
+
+    ol,
+    ul {
+      @apply list-inside;
+    }
+
+    ul {
+      @apply list-disc;
+    }
+
+    li li {
+      @apply ml-6 list-circle;
+    }
+  }
+}
+
+.riso-red {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-riso-red;
+  }
+  p,
+  ul,
+  ol,
+  blockquote {
+    @apply text-riso-red-dark;
+  }
+
+  // img {
+  //   @apply border-riso-red;
+  // }
+}
+.riso-blue {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-riso-blue;
+  }
+  p,
+  ul,
+  ol,
+  blockquote {
+    @apply text-riso-blue-dark;
+  }
+
+  // img {
+  //   @apply border-l-10 border-riso-blue;
+  // }
+}
+.riso-green {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-riso-green;
+  }
+  p,
+  ul,
+  ol,
+  blockquote {
+    @apply text-riso-green-dark;
+  }
+
+  // img {
+  //   @apply border-l-10 border-riso-green;
+  // }
+}
+.riso-purple {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-riso-purple;
+  }
+  p,
+  ul,
+  ol,
+  blockquote {
+    @apply text-riso-purple-dark;
+  }
+
+  // img {
+  //   @apply border-l-10 border-riso-purple;
+  // }
+}
+.riso-teal {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-riso-teal;
+  }
+  p,
+  ul,
+  ol,
+  blockquote {
+    @apply text-riso-teal-dark;
+  }
+
+  // img {
+  //   @apply border-l-10 border-riso-teal;
+  // }
+}
+.riso-yellow {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-riso-yellow-dark;
+  }
+  p,
+  ul,
+  ol,
+  blockquote {
+    @apply text-riso-yellow-dark;
+  }
+
+  // img {
+  //   @apply border-l-10 border-riso-yellow;
+  // }
+}
+.riso-black {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-black;
+  }
+  p,
+  ul,
+  ol,
+  blockquote {
+    @apply text-black;
+  }
+
+  // img {
+  //   @apply border-l-10 border-riso-teal;
+  // }
+}

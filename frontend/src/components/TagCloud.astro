@@ -1,0 +1,45 @@
+---
+import TagLink from "./TagLink.astro";
+
+const { path, tags, currentTag } = Astro.props;
+---
+
+<div class="w-full my-5">
+  <div class="flex">
+    <button
+      id="filter-tags"
+      class="text-riso-blue hover:text-riso-red text-xl md:text-base"
+      ><span class="underline">Tags</span>
+      <span class="hidden tag-cloud-hide">→</span>
+      <span class="tag-cloud-hide">↓</span>
+    </button>
+    <h2 class="text-riso-red ml-auto">{currentTag}</h2>
+  </div>
+  <div class="hidden tag-cloud-hide">
+    <ul class="flex mt-2 gap-2 flex-wrap">
+      <li>
+        <TagLink color={"red"} slug={"."} path={path} title={"All"} />
+      </li>
+      {
+        tags.map((tag) => (
+          <li>
+            <TagLink
+              color={tag.color}
+              slug={tag.slug.current}
+              path={path}
+              title={tag.title}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<script>
+  document.querySelector("#filter-tags").addEventListener("click", () => {
+    document.querySelectorAll(".tag-cloud-hide").forEach((element) => {
+      element.classList.toggle("hidden");
+    });
+  });
+</script>

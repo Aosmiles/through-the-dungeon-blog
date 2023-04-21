@@ -1,0 +1,24 @@
+---
+import BlogFeed from "../../components/blog/BlogFeed.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getAllPosts } from "../../lib/sanity";
+
+export async function getStaticPaths({ paginate }) {
+  const posts = await getAllPosts();
+
+  posts.map((post) => {
+    return {
+      params: { slug: post.slug.current },
+      props: { post },
+    };
+  });
+  return paginate(posts, { pageSize: 10 });
+}
+
+const { page } = Astro.props;
+const title = "Blog";
+---
+
+<MainLayout title={title}>
+  <BlogFeed page={page} tagTitle="All" />
+</MainLayout>

@@ -1,0 +1,46 @@
+---
+import { urlForImage } from "../../lib/sanityImageUrlBuilder";
+
+const { illustration, borderColor } = Astro.props;
+
+const small = 368;
+const medium = 592;
+const large = 768;
+const smallHeight = 144;
+const mediumHeight = 224;
+const largeHeight = 288;
+
+const smallImage = urlForImage(illustration.image)
+  .width(small)
+  .height(smallHeight)
+  .fit("max")
+  .auto("format")
+  .url();
+const mediumImage = urlForImage(illustration.image)
+  .width(medium)
+  .height(mediumHeight)
+  .fit("max")
+  .auto("format")
+  .url();
+const largeImage = urlForImage(illustration.image)
+  .width(large)
+  .height(largeHeight)
+  .fit("max")
+  .auto("format")
+  .url();
+---
+
+<img
+  class:list={[
+    "border-l-16",
+    "h-36 md:h-56 lg:h-72 object-cover",
+    borderColor.border,
+    borderColor.bg,
+  ]}
+  src={largeImage}
+  srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
+  sizes="(min-width: 1024px) 768px,(min-width: 768px) 592px, 368px"
+  width={large}
+  height={largeHeight}
+  alt={illustration.alt}
+/>

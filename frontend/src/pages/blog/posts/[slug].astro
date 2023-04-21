@@ -1,0 +1,35 @@
+---
+import "../../../styles/blogBody.scss";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import { getAllPosts } from "../../../lib/sanity";
+import BlogPost from "../../../components/blog/BlogPost.astro";
+import PaginationNav from "../../../components/PaginationNav.astro";
+
+export async function getStaticPaths() {
+  const allPosts = await getAllPosts();
+  return allPosts.map((post, i, arr) => {
+    return {
+      params: { slug: post.slug.current },
+      props: {
+        post: post,
+        next: arr[i + 1] || null,
+        prev: arr[i - 1] || null,
+      },
+    };
+  });
+}
+
+const { post, next, prev } = Astro.props;
+
+function getUrl(page) {
+  if (page) return "/blog/posts/" + page.slug.current;
+}
+
+const nextUrl = getUrl(next);
+const prevUrl = getUrl(prev);
+---
+
+<MainLayout title={post.title}>
+  <BlogPost post={post} />
+  <PaginationNav nextUrl={nextUrl} prevUrl={prevUrl} />
+</MainLayout>

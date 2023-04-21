@@ -1,0 +1,23 @@
+---
+import { getAllTags } from "../lib/sanity";
+import GalleryImage from "./GalleryImage.astro";
+import PaginationNav from "./PaginationNav.astro";
+import TagCloud from "./TagCloud.astro";
+
+const { page, path, tagTitle } = Astro.props;
+const illustrations = page.data;
+const tags = await getAllTags("illustration");
+---
+
+<TagCloud path={path} tags={tags} currentTag={tagTitle} />
+<ul class="grid gallery masonry w-full">
+  {
+    illustrations.map((i) => (
+      <li class=" hidden masonry-item transition duration-300 animate-fade-in">
+        <GalleryImage illustration={i} />
+      </li>
+    ))
+  }
+</ul>
+
+<script src="../lib/masonry"></script>

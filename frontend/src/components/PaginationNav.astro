@@ -1,0 +1,24 @@
+---
+const { nextUrl, prevUrl } = Astro.props;
+---
+
+<div class="w-full text-riso-blue my-6 flex">
+  {
+    prevUrl && (
+      <a class="hover:text-riso-red underline py-1 pr-3" href={prevUrl}>
+        {"<< Previous"}
+      </a>
+    )
+  }
+
+  {
+    nextUrl && (
+      <a
+        class="ml-auto py-1 pl-3  hover:text-riso-red underline"
+        href={nextUrl}
+      >
+        {"Next >>"}
+      </a>
+    )
+  }
+</div>

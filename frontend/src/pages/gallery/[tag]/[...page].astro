@@ -1,0 +1,31 @@
+---
+import Gallery from "../../../components/Gallery.astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import { getAllIllustrations, getAllTags } from "../../../lib/sanity";
+
+export async function getStaticPaths({ paginate }) {
+  const allTags = await getAllTags("illustration");
+  const allIllustrations = await getAllIllustrations();
+  // For every tag, return a paginate() result.
+  // Make sure that you pass `{params: {tag}}` to `paginate()`
+  // so that Astro knows which tag grouping the result is for.
+  return allTags.map((tag) => {
+    const filteredIllustrations = allIllustrations.filter((illustration) => {
+      return illustration.tagSlugs.includes(tag.slug.current);
+    });
+    return paginate(filteredIllustrations, {
+      params: { tag: tag.slug.current },
+      props: { tag: tag },
+      pageSize: 30,
+    });
+  });
+}
+const { page, tag } = Astro.props;
+const params = Astro.params;
+
+const path = "/gallery/";
+---
+
+<MainLayout title={tag.title}>
+  <Gallery page={page} path={path} tagTitle={tag.title} />
+</MainLayout>

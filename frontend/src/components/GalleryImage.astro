@@ -1,0 +1,74 @@
+---
+import { urlForImage } from "../lib/sanityImageUrlBuilder";
+
+import Tags from "./Tags.astro";
+
+const { illustration } = Astro.props;
+
+const thumbSmall = 225;
+const thumbMedium = 275;
+const thumbLarge = 350;
+const thumbHeight = thumbLarge / illustration.size.aspectRatio;
+
+const displayWidth = 900;
+const displayHeight = displayWidth / illustration.size.aspectRatio;
+
+const smallThumbnail = urlForImage(illustration.image)
+  .width(thumbSmall)
+  .fit("max")
+  .auto("format")
+  .url();
+const mediumThumbnail = urlForImage(illustration.image)
+  .width(thumbMedium)
+  .fit("max")
+  .auto("format")
+  .url();
+const largeThumbnail = urlForImage(illustration.image)
+  .width(thumbLarge)
+  .fit("max")
+  .auto("format")
+  .url();
+const displayImage = urlForImage(illustration.image)
+  .width(displayWidth)
+  .fit("max")
+  .auto("format")
+  .url();
+---
+
+<div class="ps-image transition duration-100 hover:-translate-y-1">
+  <a
+    href={displayImage}
+    data-pswp-width={displayWidth}
+    data-pswp-height={displayHeight}
+    target="_blank"
+  >
+    <img
+      src={largeThumbnail}
+      srcset={`${largeThumbnail} ${thumbLarge}w, ${mediumThumbnail} ${thumbMedium}w, ${smallThumbnail} ${thumbSmall}w`}
+      sizes="(min-width: 1024px) 225px,(min-width: 768px) 275px, 350px"
+      alt={illustration.alt}
+      width={thumbLarge}
+      height={thumbHeight}
+      loading="lazy"
+    />
+  </a>
+  <div class="caption-content hidden">
+    <h1 class="uppercase text-lg">{illustration.title}</h1>
+    <p>{illustration.caption}</p>
+    {
+      illustration.refPostSlugs[0] && (
+        <div class="mb-3">
+          <span>Blog Post:</span>
+          <a
+            class="underline"
+            href={`/blog/posts/${illustration.refPostSlugs[0].slug.current}`}
+          >
+            {illustration.refPostSlugs[0].title}
+          </a>
+        </div>
+      )
+    }
+    <span>Tags:</span>
+    <Tags tags={illustration.tags} path="/gallery/" />
+  </div>
+</div>
