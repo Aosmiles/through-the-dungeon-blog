@@ -2,6 +2,8 @@ import {theme} from 'https://themer.sanity.build/api/hues?default=465f2d;600&pri
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
+import {dashboardTool} from '@sanity/dashboard'
+import {netlifyWidget} from 'sanity-plugin-dashboard-widget-netlify'
 import {schemaTypes} from './schemas'
 import {myStructure} from './src/structure'
 
@@ -18,6 +20,21 @@ export default defineConfig({
       structure: myStructure,
     }),
     visionTool(),
+    dashboardTool({
+      widgets: [
+        netlifyWidget({
+          title: 'Netlify deploy',
+          sites: [
+            {
+              title: 'through the dungeon',
+              apiId: '4df9582c-374d-496f-8c52-45e2b5c4447a',
+              buildHookId: 'https://api.netlify.com/build_hooks/6442e0e013083406c337736e',
+              name: 'Through-The-Dungeon',
+            },
+          ],
+        }),
+      ],
+    }),
   ],
 
   schema: {
