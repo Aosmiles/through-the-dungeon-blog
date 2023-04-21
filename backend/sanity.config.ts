@@ -26,10 +26,11 @@ export default defineConfig({
           title: 'Netlify deploy',
           sites: [
             {
-              title: 'through the dungeon',
+              title: 'Through The Dungeon',
               apiId: '4df9582c-374d-496f-8c52-45e2b5c4447a',
-              buildHookId: 'https://api.netlify.com/build_hooks/6442e0e013083406c337736e',
-              name: 'Through-The-Dungeon',
+              buildHookId: '6442f28fb3ea58153fb39450',
+              name: 'through-the-dungeon',
+              url: 'https://through-the-dungeon.com',
             },
           ],
         }),
