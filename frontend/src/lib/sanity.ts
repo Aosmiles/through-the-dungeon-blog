@@ -21,8 +21,9 @@ export async function getAllPosts() {
 
 export async function getAllIllustrations() {
   if (allIllustrations) return allIllustrations;
-  const query = groq`*[_type == "illustration"] {
+  const query = groq`*[_type == "illustration" && inGallery == true] {
   ...,
+  "refPostSlugs": *[_type == "post" && illustration._ref == ^._id]{slug, title},
   "size": image.asset->metadata.dimensions,
     tags[]->,
     "tagSlugs":tags[]->slug.current

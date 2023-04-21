@@ -7,6 +7,7 @@ import FeatureBlock from "./FeatureBlock.astro";
 const { post } = Astro.props;
 
 const hasFeatureOrBody = Boolean(post.feature || post.body);
+//set image sizes for posts without body or features
 const lgLayoutImageSize = hasFeatureOrBody ? 300 : 600;
 ---
 
@@ -19,7 +20,6 @@ const lgLayoutImageSize = hasFeatureOrBody ? 300 : 600;
     ]}
   >
     {
-      // todo: create vertical and horizontal image components or full blog layouts
       post.illustration && (
         <div class="">
           <BlogPostImage

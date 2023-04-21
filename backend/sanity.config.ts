@@ -11,7 +11,7 @@ export default defineConfig({
   title: 'through the dungeon',
 
   projectId: 'v15pu7z1',
-  dataset: 'production',
+  dataset: 'development',
 
   plugins: [
     deskTool({

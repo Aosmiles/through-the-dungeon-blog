@@ -9,11 +9,19 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      validation: (rule) => rule.max(120).required(),
+    }),
+    defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+      validation: (rule) => rule.max(120).required(),
     }),
     defineField({
       name: 'description',
       title: 'Meta Description',
       type: 'text',
+      validation: (Rule) => Rule.max(160).warning(`160 characters max`).required(),
     }),
     defineField({
       name: 'url',
@@ -24,12 +32,6 @@ export default defineType({
       name: 'ogImage',
       title: 'Open Graph Image',
       type: 'image',
-    }),
-    defineField({
-      name: 'pinnedPost',
-      title: 'Pinned Post',
-      type: 'reference',
-      to: [{type: 'post'}],
     }),
     defineField({
       name: 'aboutMe',
@@ -44,7 +46,6 @@ export default defineType({
         },
       ],
     }),
-
     defineField({
       name: 'aboutMeImage',
       title: 'About Me Image',
