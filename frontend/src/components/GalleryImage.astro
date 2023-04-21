@@ -55,6 +55,20 @@ const displayImage = urlForImage(illustration.image)
   <div class="caption-content hidden">
     <h1 class="uppercase text-lg">{illustration.title}</h1>
     <p>{illustration.caption}</p>
+    {
+      illustration.refPostSlugs[0] && (
+        <div class="mb-3">
+          <span>Blog Post:</span>
+          <a
+            class="underline"
+            href={`/blog/posts/${illustration.refPostSlugs[0].slug.current}`}
+          >
+            {illustration.refPostSlugs[0].title}
+          </a>
+        </div>
+      )
+    }
+    <span>Tags:</span>
     <Tags tags={illustration.tags} path="/gallery/" />
   </div>
 </div>
