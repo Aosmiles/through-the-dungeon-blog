@@ -9,7 +9,7 @@ const posts = page.data;
 const tags = await getAllTags("post");
 ---
 
-<div class="max-w-3xl">
+<div class="w-full">
   <TagCloud path="/blog/" tags={tags} currentTag={tagTitle} />
   <ul class="flex flex-col gap-8 mt-8">
     {
