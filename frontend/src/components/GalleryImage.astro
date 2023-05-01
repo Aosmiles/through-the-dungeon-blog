@@ -1,5 +1,6 @@
 ---
 import { urlForImage } from "../lib/sanityImageUrlBuilder";
+import getCropSize from "../utility/illustrationCropSizes";
 
 import Tags from "./Tags.astro";
 
@@ -8,10 +9,10 @@ const { illustration } = Astro.props;
 const thumbSmall = 225;
 const thumbMedium = 275;
 const thumbLarge = 350;
-const thumbHeight = thumbLarge / illustration.size.aspectRatio;
+const thumbHeight = thumbLarge / getCropSize(illustration).ratio;
 
 const displayWidth = 900;
-const displayHeight = displayWidth / illustration.size.aspectRatio;
+const displayHeight = displayWidth / getCropSize(illustration).ratio;
 
 const smallThumbnail = urlForImage(illustration.image)
   .width(thumbSmall)

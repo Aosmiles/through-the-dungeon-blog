@@ -1,5 +1,6 @@
 ---
 import { urlForImage } from "../../lib/sanityImageUrlBuilder";
+import getCropSize from "../../utility/illustrationCropSizes";
 
 const { illustration, thumbSizes } = Astro.props;
 
@@ -29,7 +30,7 @@ const largeImage = urlForImage(illustration.image)
   href={largeImage}
   data-pswp-srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
   data-pswp-width={large}
-  data-pswp-height={large / illustration.size.aspectRatio}
+  data-pswp-height={large / getCropSize(illustration).ratio}
   target="_blank"
 >
   <img
@@ -37,7 +38,7 @@ const largeImage = urlForImage(illustration.image)
     srcset={`${largeImage} ${large}w, ${mediumImage} ${medium}w, ${smallImage} ${small}w`}
     sizes={thumbSizes}
     width={large}
-    height={large / illustration.size.aspectRatio}
+    height={large / getCropSize(illustration).ratio}
     alt={illustration.alt}
   />
   <span class="caption-content hidden"></span>
